@@ -7,7 +7,10 @@
 //
 
 #import "AppDelegate.h"
-
+#import "WNBarController.h"
+#import "WNLeftViewController.h"
+#import "WNWeatherViewController.h"
+#import "LeftSlideViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -16,8 +19,15 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    _window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    WNBarController *nvc = [[WNBarController alloc]init];
+    [_window makeKeyAndVisible];
+   //left控制器
+    WNLeftViewController * leftController = [[WNLeftViewController alloc] init];
+      LeftSlideViewController *left = [[LeftSlideViewController alloc] initWithLeftView:leftController andMainView:nvc];
+    _window.rootViewController = left;
     return YES;
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

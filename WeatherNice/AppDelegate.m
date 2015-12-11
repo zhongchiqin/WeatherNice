@@ -11,7 +11,15 @@
 #import "WNLeftViewController.h"
 #import "WNWeatherViewController.h"
 #import "LeftSlideViewController.h"
+#import <UIKit+AFNetworking.h>
+#import <AFNetworking.h>
+#import "WNAlertController.h"
+
+#define kThemeDidChangeNotification @"kThemeDidChangeNotification"
+
 @interface AppDelegate ()
+
+
 
 @end
 
@@ -24,10 +32,61 @@
     [_window makeKeyAndVisible];
    //left控制器
     WNLeftViewController * leftController = [[WNLeftViewController alloc] init];
-      LeftSlideViewController *left = [[LeftSlideViewController alloc] initWithLeftView:leftController andMainView:nvc];
+    LeftSlideViewController *left = [[LeftSlideViewController alloc] initWithLeftView:leftController andMainView:nvc];
     _window.rootViewController = left;
+//    监听网络
+    [self monitorUrl];
+    
     return YES;
     
+    
+}
+
+//监听网络
+- (void)monitorUrl
+{
+    [[AFNetworkActivityIndicatorManager sharedManager]setEnabled:YES];
+    NSURL *url = [NSURL URLWithString:@"http://baidu.com"];
+    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc]initWithBaseURL:url];
+    NSOperationQueue *operationQueue = manager.operationQueue;
+    [manager.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        
+        switch (status) {
+            case AFNetworkReachabilityStatusReachableViaWWAN:
+            case AFNetworkReachabilityStatusReachableViaWiFi:
+                
+                [operationQueue setSuspended:NO];
+                
+                NSLog(@"有网络");
+                
+                break;
+                
+            case AFNetworkReachabilityStatusNotReachable:
+            default:{
+
+                [operationQueue setSuspended:YES];
+                
+                 NSLog(@"无网络");
+                
+                LeftSlideViewController * leftVC =(LeftSlideViewController *)self.window.rootViewController;
+                WNAlertController *alertConrtoller = [[WNAlertController alloc]init];
+                [alertConrtoller showAlertInViewController:leftVC withTitle:@"Reminder" Message:@"没有联网哦" ActionTitle1:@"知道啦" ActionTitle2:@"取消" Cancle:^(UIAlertAction *cancle) {
+                    [alertConrtoller dismissViewControllerAnimated:YES completion:nil];
+                } Define:^(UIAlertAction *define) {
+                    [alertConrtoller dismissViewControllerAnimated:YES completion:nil];
+                }];
+                [leftVC presentViewController:alertConrtoller animated:YES completion:nil];
+            
+            }
+                break;
+        }
+        
+    }];
+    
+    /**
+     *  开始监听
+     */
+    [manager.reachabilityManager startMonitoring];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

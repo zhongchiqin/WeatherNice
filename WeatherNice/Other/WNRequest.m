@@ -18,7 +18,7 @@
  请求失败时的回调
  **/
  
-+(void)requestWithUrl:(NSString *)urlString Complete:(void(^)(NSData *data))success Fail:(void (^)(NSError *))failture
++ (void)requestWithUrl:(NSString *)urlString Complete:(CompleteBlock)success Fail:(FailtureBlock)failture
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -36,7 +36,7 @@
  请求完成时的回调
  请求失败时的回调
  **/
-+(void)request:(NSString *)httpUrl withHttpArg:(NSString *)HttpArg Complete:(void (^)(NSData *))success fail:(void (^)(NSError *))failture
++ (void)request: (NSString*)httpUrl withHttpArg: (NSString*)HttpArg Complete:(CompleteBlock)success fail:(FailtureBlock)failture;
 {
     NSString *urlStr = [[NSString alloc]initWithFormat: @"%@?%@", httpUrl, HttpArg];
     NSURL *url = [NSURL URLWithString: urlStr];

@@ -9,7 +9,6 @@
 #import "WNNavController.h"
 
 @interface WNNavController ()
-
 @end
 
 @implementation WNNavController

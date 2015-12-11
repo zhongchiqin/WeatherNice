@@ -39,6 +39,7 @@
     UIImage *selectImage = [[UIImage imageNamed:selectImageName]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     controller.tabBarItem = [[UITabBarItem alloc]initWithTitle:title image:normalImage selectedImage:selectImage];
     WNNavController * nvc = [[WNNavController alloc]initWithRootViewController:controller];
+    
     NSMutableArray *array = [NSMutableArray arrayWithArray:self.viewControllers];
     [array addObject:nvc];
     self.viewControllers = array;

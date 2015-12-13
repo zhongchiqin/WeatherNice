@@ -15,7 +15,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *FlLale;
 @property (weak, nonatomic) IBOutlet UILabel *WindLable;
 @property (weak, nonatomic) IBOutlet UILabel *HumLable;
+@property (weak, nonatomic) IBOutlet UIImageView *headImage;
 
-- (void)creatfirstCellWithDict:(NSDictionary *)dict;
+
+
+- (void)creatFirstCellWithDict:(NSDictionary *)dict;
 
 @end

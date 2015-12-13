@@ -100,6 +100,15 @@
                         </constraints>
                         <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="15"/>
                     </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="17w-Z9-XAa">
+                        <rect key="frame" x="134" y="170" width="82" height="82"/>
+                        <animations/>
+                        <color key="tintColor" red="0.9794469898" green="1" blue="0.99855474820000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="82" id="8ea-Mt-ePd"/>
+                            <constraint firstAttribute="height" constant="82" id="ETf-Kf-FLD"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <animations/>
                 <constraints>
@@ -117,7 +126,9 @@
                     <constraint firstAttribute="bottomMargin" secondItem="Sn3-P1-FK0" secondAttribute="bottom" constant="12" id="gzC-e9-33A"/>
                     <constraint firstItem="qC7-AM-fOG" firstAttribute="top" secondItem="6Wr-Kx-BVN" secondAttribute="bottom" constant="-79" id="jWn-zX-Uqx"/>
                     <constraint firstItem="qC7-AM-fOG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="k6e-67-TKf"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="17w-Z9-XAa" secondAttribute="bottom" constant="93.5" id="kvD-wd-ie8"/>
                     <constraint firstItem="qC7-AM-fOG" firstAttribute="leading" secondItem="6Wr-Kx-BVN" secondAttribute="trailing" constant="-126" id="lbo-F7-g1C"/>
+                    <constraint firstItem="17w-Z9-XAa" firstAttribute="leading" secondItem="qV3-mY-Kk5" secondAttribute="trailing" constant="20" id="w6B-t6-Xb9"/>
                     <constraint firstItem="qC7-AM-fOG" firstAttribute="top" secondItem="qV3-mY-Kk5" secondAttribute="bottom" constant="8" id="x94-04-b6P"/>
                 </constraints>
             </tableViewCellContentView>
@@ -129,8 +140,9 @@
                 <outlet property="TimeLable" destination="rLH-bD-6O0" id="8FE-xf-aR8"/>
                 <outlet property="TxtLable" destination="Iuu-5b-sGS" id="nO3-G6-XRX"/>
                 <outlet property="WindLable" destination="Sn3-P1-FK0" id="pKP-8h-uD7"/>
+                <outlet property="headImage" destination="17w-Z9-XAa" id="3Vc-5D-vI4"/>
             </connections>
-            <point key="canvasLocation" x="226" y="24"/>
+            <point key="canvasLocation" x="111" y="19"/>
         </tableViewCell>
     </objects>
     <resources>

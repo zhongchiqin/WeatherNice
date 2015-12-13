@@ -18,6 +18,8 @@
 #import "YWViewController.h"
 #import "AppDelegate.h"
 #import "LeftSlideViewController.h"
+#import "WNSecondTableViewCell.h"
+
 
 static NSString * const Identifier1 = @"Identifier1";
 static NSString * const Identifier2 = @"Identifier2";
@@ -82,9 +84,10 @@ static NSString * const Identifier6 = @"Identifier6";
 //        NSLog(@"%@",dict[@"HeWeather data service 3.0"][0][@"aqi"]);
         _dict = dict[@"HeWeather data service 3.0"][0];
         NSLog(@"%@",_dict);
-        WNBasic *now = [WNBasic objectWithKeyValues:dict[@"HeWeather data service 3.0"][0][@"basic"]];
-        NSLog(@"deg:%@ fl:%@",now.city,now.update[@"loc"]);
         [_tableView reloadData];
+//        WNBasic *now = [WNBasic objectWithKeyValues:dict[@"HeWeather data service 3.0"][0][@"basic"]];
+//        NSLog(@"deg:%@ fl:%@",now.city,now.update[@"loc"]);
+        
         
     } fail:^(NSError *error) {
         NSLog(@"%@",error);
@@ -101,6 +104,8 @@ static NSString * const Identifier6 = @"Identifier6";
     [self.view addSubview:_tableView];
     UINib *firstNib = [UINib nibWithNibName:@"WNFirstTableViewCell" bundle:nil];
     [_tableView registerNib:firstNib forCellReuseIdentifier:Identifier1];
+    UINib *secondNib = [UINib nibWithNibName:@"WNSecondTableViewCell" bundle:nil];
+    [_tableView registerNib:secondNib forCellReuseIdentifier:Identifier2];
     
 }
 
@@ -129,14 +134,24 @@ static NSString * const Identifier6 = @"Identifier6";
     if (indexPath.row == 0) {
         WNFirstTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier1];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [cell creatfirstCellWithDict:_dict];
+        [cell creatFirstCellWithDict:_dict];
         return cell;
         
     }
-    else{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier2];
-    cell.textLabel.text = @"hahha";
+    else if(indexPath.row == 1){
+    WNSecondTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier2];
+        cell.backgroundColor = [UIColor clearColor];
+        [cell creatSecondCellWithDict:_dict];
+        
          return cell;
+    }else {
+    
+        UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        if (cell == nil) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        }
+        return cell;
+        
     }
     return nil;
    

@@ -21,7 +21,7 @@
 - (void)awakeFromNib {
     // Initialization code
 }
-- (void)creatfirstCellWithDict:(NSDictionary *)dict
+- (void)creatFirstCellWithDict:(NSDictionary *)dict
 {
     self.backgroundColor = [UIColor clearColor];
    
@@ -31,6 +31,7 @@
     _AqiLable.text = aqi.city.aqi;
     _TxtLable.text = now.cond[@"txt"];
     _FlLale.text = now.fl;
+    _headImage.image = [[UIImage imageNamed:now.cond[@"code"]]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     NSString *str = @"%";
     NSLog(@"%@",now.hum);
     if (now.hum == nil) {

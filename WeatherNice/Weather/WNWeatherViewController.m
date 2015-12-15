@@ -19,7 +19,8 @@
 #import "AppDelegate.h"
 #import "LeftSlideViewController.h"
 #import "WNSecondTableViewCell.h"
-
+#import "WNTNThirdTableVIewCell.h"
+#import "WNDaily_forecast.h"
 
 static NSString * const Identifier1 = @"Identifier1";
 static NSString * const Identifier2 = @"Identifier2";
@@ -38,6 +39,7 @@ static NSString * const Identifier6 = @"Identifier6";
 
 @implementation WNWeatherViewController
 
+//把侧滑手势打开
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -47,6 +49,7 @@ static NSString * const Identifier6 = @"Identifier6";
     LeftSlideViewController * lsv = (LeftSlideViewController *)window.rootViewController;
     [lsv setPanEnabled:YES];
 }
+//把侧滑手势关闭
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
@@ -55,6 +58,7 @@ static NSString * const Identifier6 = @"Identifier6";
     LeftSlideViewController * lsv = (LeftSlideViewController *)window.rootViewController;
     [lsv setPanEnabled:NO];
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"account_bg@2x"]];
@@ -80,40 +84,40 @@ static NSString * const Identifier6 = @"Identifier6";
     _dict = [[NSMutableDictionary alloc]init];
     [WNRequest request:httpUrl withHttpArg:httpArg Complete:^(NSData *data) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-//        NSLog(@"dict:%@",dict);
-//        NSLog(@"%@",dict[@"HeWeather data service 3.0"][0][@"aqi"]);
         _dict = dict[@"HeWeather data service 3.0"][0];
         NSLog(@"%@",_dict);
-        [_tableView reloadData];
-//        WNBasic *now = [WNBasic objectWithKeyValues:dict[@"HeWeather data service 3.0"][0][@"basic"]];
-//        NSLog(@"deg:%@ fl:%@",now.city,now.update[@"loc"]);
-        
-        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_tableView reloadData];
+        });
     } fail:^(NSError *error) {
         NSLog(@"%@",error);
     }];
 }
+
 - (void)creatTableView
 {
     _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, WScreenWidth, WScreenHeight-64)];
     _tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:Identifier2];
     _tableView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_tableView];
     UINib *firstNib = [UINib nibWithNibName:@"WNFirstTableViewCell" bundle:nil];
     [_tableView registerNib:firstNib forCellReuseIdentifier:Identifier1];
     UINib *secondNib = [UINib nibWithNibName:@"WNSecondTableViewCell" bundle:nil];
     [_tableView registerNib:secondNib forCellReuseIdentifier:Identifier2];
-    
+    [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:Identifier3];
+    UINib *thirdNib = [UINib nibWithNibName:@"WNTNThirdTableVIewCell" bundle:nil];
+    [_tableView registerNib:thirdNib forCellReuseIdentifier:Identifier4];
 }
 
 #pragma mark-------------tableViewDalegate----------------
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 6;
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
@@ -124,10 +128,11 @@ static NSString * const Identifier6 = @"Identifier6";
         return 30;
     }else if (indexPath.row == 3){
         return 300;
+    }else if (indexPath.row == 4){
+        return 30;
     }else
     return 320;
 }
-
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -144,18 +149,30 @@ static NSString * const Identifier6 = @"Identifier6";
         [cell creatSecondCellWithDict:_dict];
         
          return cell;
+    } else if(indexPath.row == 2){
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier3];
+        cell.backgroundColor = [UIColor clearColor];
+        cell.textLabel.text = @"预报";
+        return cell;
+    }else if(indexPath.row == 3){
+        WNTNThirdTableVIewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier4];
+        cell.backgroundColor = [UIColor clearColor];
+        [cell creatThirdCellWithDict:_dict];
+        return cell;
+    }else if(indexPath.row == 4){
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier3];
+        cell.backgroundColor = [UIColor clearColor];
+        cell.textLabel.text = @"指数";
+        return cell;
     }else {
-    
-        UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier3];
         if (cell == nil) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+            
         }
         return cell;
-        
     }
     return nil;
-   
-
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

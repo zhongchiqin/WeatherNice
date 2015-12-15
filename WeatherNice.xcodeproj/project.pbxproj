@@ -31,6 +31,10 @@
 		2F5D562B1C0EC51E00972007 /* LeftSlideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F5D56281C0EC51E00972007 /* LeftSlideViewController.m */; };
 		2F5D562C1C0EC51E00972007 /* UIView_extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F5D562A1C0EC51E00972007 /* UIView_extra.m */; };
 		871260231C1AEF3E00DA2A1A /* account_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 871260221C1AEF3E00DA2A1A /* account_bg@2x.png */; };
+		876991F21C1E87A4004F3D51 /* WNTNThirdTableVIewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 876991F01C1E87A4004F3D51 /* WNTNThirdTableVIewCell.m */; };
+		876991F31C1E87A4004F3D51 /* WNTNThirdTableVIewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 876991F11C1E87A4004F3D51 /* WNTNThirdTableVIewCell.xib */; };
+		876991F71C1EB013004F3D51 /* WNCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 876991F51C1EB013004F3D51 /* WNCollectionViewCell.m */; };
+		876991F81C1EB013004F3D51 /* WNCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 876991F61C1EB013004F3D51 /* WNCollectionViewCell.xib */; };
 		878D6D8E1C1871A4000C78E2 /* WNAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878D6D8D1C1871A4000C78E2 /* WNAlertController.m */; };
 		879D57661C1BB02B00167982 /* 101.png in Resources */ = {isa = PBXBuildFile; fileRef = 879D57331C1BB02B00167982 /* 101.png */; };
 		879D57671C1BB02B00167982 /* 102.png in Resources */ = {isa = PBXBuildFile; fileRef = 879D57341C1BB02B00167982 /* 102.png */; };
@@ -167,6 +171,12 @@
 		5C61470CA384D30E41477F08 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		625BC716FF1B544CBC7A116E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		871260221C1AEF3E00DA2A1A /* account_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "account_bg@2x.png"; sourceTree = "<group>"; };
+		876991EF1C1E87A4004F3D51 /* WNTNThirdTableVIewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WNTNThirdTableVIewCell.h; path = Weather/WNTNThirdTableVIewCell.h; sourceTree = "<group>"; };
+		876991F01C1E87A4004F3D51 /* WNTNThirdTableVIewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WNTNThirdTableVIewCell.m; path = Weather/WNTNThirdTableVIewCell.m; sourceTree = "<group>"; };
+		876991F11C1E87A4004F3D51 /* WNTNThirdTableVIewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WNTNThirdTableVIewCell.xib; path = Weather/WNTNThirdTableVIewCell.xib; sourceTree = "<group>"; };
+		876991F41C1EB013004F3D51 /* WNCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WNCollectionViewCell.h; path = Weather/WNCollectionViewCell.h; sourceTree = "<group>"; };
+		876991F51C1EB013004F3D51 /* WNCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WNCollectionViewCell.m; path = Weather/WNCollectionViewCell.m; sourceTree = "<group>"; };
+		876991F61C1EB013004F3D51 /* WNCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WNCollectionViewCell.xib; path = Weather/WNCollectionViewCell.xib; sourceTree = "<group>"; };
 		878D6D8C1C1871A4000C78E2 /* WNAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WNAlertController.h; path = Other/WNAlertController.h; sourceTree = "<group>"; };
 		878D6D8D1C1871A4000C78E2 /* WNAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WNAlertController.m; path = Other/WNAlertController.m; sourceTree = "<group>"; };
 		879D57331C1BB02B00167982 /* 101.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 101.png; sourceTree = "<group>"; };
@@ -383,8 +393,8 @@
 				2F5D56051C0E9DBC00972007 /* WNWeatherViewController.m */,
 				2F5D56231C0EC04300972007 /* WNLeftViewController.h */,
 				2F5D56241C0EC04300972007 /* WNLeftViewController.m */,
-				87F9428A1C19B089004E3F5E /* YWViewController.h */,
 				87F9428B1C19B089004E3F5E /* YWViewController.m */,
+				87F9428A1C19B089004E3F5E /* YWViewController.h */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -417,6 +427,12 @@
 				879D579A1C1C706000167982 /* WNSecondTableViewCell.h */,
 				879D579B1C1C706000167982 /* WNSecondTableViewCell.m */,
 				879D579C1C1C706000167982 /* WNSecondTableViewCell.xib */,
+				876991EF1C1E87A4004F3D51 /* WNTNThirdTableVIewCell.h */,
+				876991F01C1E87A4004F3D51 /* WNTNThirdTableVIewCell.m */,
+				876991F11C1E87A4004F3D51 /* WNTNThirdTableVIewCell.xib */,
+				876991F41C1EB013004F3D51 /* WNCollectionViewCell.h */,
+				876991F51C1EB013004F3D51 /* WNCollectionViewCell.m */,
+				876991F61C1EB013004F3D51 /* WNCollectionViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -739,6 +755,7 @@
 				871260231C1AEF3E00DA2A1A /* account_bg@2x.png in Resources */,
 				87F9427B1C194D4B004E3F5E /* WNFirstTableViewCell.xib in Resources */,
 				879D57951C1BB02B00167982 /* 900.png in Resources */,
+				876991F81C1EB013004F3D51 /* WNCollectionViewCell.xib in Resources */,
 				879D57871C1BB02B00167982 /* 401.png in Resources */,
 				879D57961C1BB02B00167982 /* 901.png in Resources */,
 				879D577B1C1BB02B00167982 /* 303.png in Resources */,
@@ -763,6 +780,7 @@
 				879D57911C1BB02B00167982 /* 503.png in Resources */,
 				879D578A1C1BB02B00167982 /* 404.png in Resources */,
 				879D576A1C1BB02B00167982 /* 200.png in Resources */,
+				876991F31C1E87A4004F3D51 /* WNTNThirdTableVIewCell.xib in Resources */,
 				879D57801C1BB02B00167982 /* 308.png in Resources */,
 				2F5D55FE1C0E9CFC00972007 /* tabbar_live_normal@2x.png in Resources */,
 				879D576C1C1BB02B00167982 /* 202.png in Resources */,
@@ -853,6 +871,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				876991F21C1E87A4004F3D51 /* WNTNThirdTableVIewCell.m in Sources */,
 				87F9428C1C19B089004E3F5E /* YWViewController.m in Sources */,
 				87F942651C1918B1004E3F5E /* WNCity.m in Sources */,
 				2F5D56251C0EC04300972007 /* WNLeftViewController.m in Sources */,
@@ -865,6 +884,7 @@
 				87F9426B1C19205A004E3F5E /* WNNow.m in Sources */,
 				2F5D560A1C0E9F6800972007 /* WNSceneViewController.m in Sources */,
 				87F9426E1C193193004E3F5E /* WNSuggestion.m in Sources */,
+				876991F71C1EB013004F3D51 /* WNCollectionViewCell.m in Sources */,
 				2F5D53651C0DFE3400972007 /* AppDelegate.m in Sources */,
 				87F942711C193436004E3F5E /* WNDaily_forecast.m in Sources */,
 				878D6D8E1C1871A4000C78E2 /* WNAlertController.m in Sources */,

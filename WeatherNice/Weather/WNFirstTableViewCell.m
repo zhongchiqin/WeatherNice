@@ -24,13 +24,12 @@
 - (void)creatFirstCellWithDict:(NSDictionary *)dict
 {
     self.backgroundColor = [UIColor clearColor];
-   
     WNAqi *aqi = [WNAqi objectWithKeyValues:dict[@"aqi"]];
     WNNow *now = [WNNow objectWithKeyValues:dict[@"now"]];
     WNBasic *basic = [WNBasic objectWithKeyValues:dict[@"basic"]];
     _AqiLable.text = aqi.city.aqi;
     _TxtLable.text = now.cond[@"txt"];
-    _FlLale.text = now.fl;
+    _FlLale.text = [NSString stringWithFormat:@"%@°",now.fl];
     _headImage.image = [[UIImage imageNamed:now.cond[@"code"]]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     NSString *str = @"%";
     NSLog(@"%@",now.hum);

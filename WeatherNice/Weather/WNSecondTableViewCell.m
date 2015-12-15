@@ -104,7 +104,6 @@
     _todayFl.text = [NSString stringWithFormat:@"%@/%@°C",today.tmp[@"max"],today.tmp[@"min"]];
     }
     _todayImage.image = [[UIImage imageNamed:today.cond[@"code_n"]]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    
     WNDaily_forecast *tomorrow = daily_forecast[1];
     if (tomorrow.tmp[@"max"] == nil) {
         _tomorrowFl.text = @"";
@@ -113,11 +112,6 @@
     }
     _tomorrowTxt.text = tomorrow.cond[@"txt_n"];
     _tomorrowImage.image = [[UIImage imageNamed:tomorrow.cond[@"code_n"]]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-}
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 

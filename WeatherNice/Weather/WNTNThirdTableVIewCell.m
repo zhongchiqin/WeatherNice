@@ -12,6 +12,7 @@
 #import "WNDaily_forecast.h"
 #import <MJExtension.h>
 
+static NSString * const Identifier = @"Identifier";
 ///温度曲线的种类
 typedef NS_ENUM(NSInteger, WNChartLineType) {
     
@@ -210,7 +211,7 @@ typedef NS_ENUM(NSInteger, WNChartLineType) {
     collctionView.dataSource = self;
     [self.contentView addSubview:collctionView];
     UINib *nib  =[UINib nibWithNibName:@"WNCollectionViewCell" bundle:[NSBundle mainBundle]];
-    [collctionView registerNib:nib forCellWithReuseIdentifier:@"abc"];
+    [collctionView registerNib:nib forCellWithReuseIdentifier:Identifier];
 }
 
 
@@ -230,7 +231,7 @@ typedef NS_ENUM(NSInteger, WNChartLineType) {
 {
     NSArray *daily_forecast = [WNDaily_forecast objectArrayWithKeyValuesArray:_dict[@"daily_forecast"]];
     WNDaily_forecast *model = daily_forecast[indexPath.row];
-    WNCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"abc" forIndexPath:indexPath];
+    WNCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:Identifier forIndexPath:indexPath];
     cell.dateLable.text = @"fdasf";
     [cell creatCollectionViewCellWithModel:model];
     return cell;

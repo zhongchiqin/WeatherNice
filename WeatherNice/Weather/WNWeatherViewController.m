@@ -21,6 +21,7 @@
 #import "WNSecondTableViewCell.h"
 #import "WNTNThirdTableVIewCell.h"
 #import "WNDaily_forecast.h"
+#import "WNFourthTableViewCell.h"
 
 static NSString * const Identifier1 = @"Identifier1";
 static NSString * const Identifier2 = @"Identifier2";
@@ -101,6 +102,7 @@ static NSString * const Identifier6 = @"Identifier6";
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.backgroundColor = [UIColor clearColor];
+//    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tableView];
     UINib *firstNib = [UINib nibWithNibName:@"WNFirstTableViewCell" bundle:nil];
     [_tableView registerNib:firstNib forCellReuseIdentifier:Identifier1];
@@ -109,6 +111,8 @@ static NSString * const Identifier6 = @"Identifier6";
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:Identifier3];
     UINib *thirdNib = [UINib nibWithNibName:@"WNTNThirdTableVIewCell" bundle:nil];
     [_tableView registerNib:thirdNib forCellReuseIdentifier:Identifier4];
+    [_tableView registerClass:[WNFourthTableViewCell class] forCellReuseIdentifier:Identifier5];
+    
 }
 
 #pragma mark-------------tableViewDalegate----------------
@@ -141,35 +145,37 @@ static NSString * const Identifier6 = @"Identifier6";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell creatFirstCellWithDict:_dict];
         return cell;
-        
     }
     else if(indexPath.row == 1){
     WNSecondTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier2];
         cell.backgroundColor = [UIColor clearColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell creatSecondCellWithDict:_dict];
         
          return cell;
     } else if(indexPath.row == 2){
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier3];
         cell.backgroundColor = [UIColor clearColor];
-        cell.textLabel.text = @"预报";
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.textLabel.text = @"七天预报";
         return cell;
     }else if(indexPath.row == 3){
         WNTNThirdTableVIewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier4];
         cell.backgroundColor = [UIColor clearColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell creatThirdCellWithDict:_dict];
         return cell;
     }else if(indexPath.row == 4){
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier3];
         cell.backgroundColor = [UIColor clearColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.textLabel.text = @"指数";
         return cell;
     }else {
-        UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier3];
-        if (cell == nil) {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-            
-        }
+        WNFourthTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier5];
+        [cell creatFourthCellWithDict:_dict];
+        cell.backgroundColor = [UIColor clearColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     return nil;

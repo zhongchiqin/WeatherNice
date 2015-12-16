@@ -2,7 +2,7 @@
 //  WeatherNiceUITests.m
 //  WeatherNiceUITests
 //
-//  Created by LeYuan on 15/12/2.
+//  Created by 钟炽琴 on 15/12/2.
 //  Copyright © 2015年 ZCQ. All rights reserved.
 //
 

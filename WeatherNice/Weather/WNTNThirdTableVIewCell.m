@@ -74,7 +74,8 @@ typedef NS_ENUM(NSInteger, WNChartLineType) {
         _layer2 = nil;
     }
     #pragma mark ------ 创建第二条线
-    UIBezierPath * path = [self graphPathFromPoints:pathTwoPoints rect:CGRectMake(0, self.frame.size.height/2, self.frame.size.width, self.frame.size.height/2) range:[self getMaxRange:_pathOnePoints] type:WNChartLineTypeMin];
+    UIBezierPath * path = [self graphPathFromPoints:pathTwoPoints rect:CGRectMake(0, self.frame.size.height/2+10, self.frame.size.width, self.frame.size.height/2-10) range:[self getMinRange:_pathOnePoints] type:WNChartLineTypeMin];
+    
     _layer2 = [CAShapeLayer layer];
     _layer2.path = path.CGPath;
     _layer2.lineWidth = 2;
@@ -94,16 +95,20 @@ typedef NS_ENUM(NSInteger, WNChartLineType) {
 {
     //找到NSArray的最小值
     NSNumber* min1=[array valueForKeyPath:@"@min.floatValue"];
-    return  (self.frame.size.height/2)/(min1.integerValue);
+    NSLog(@"===%@",min1);
+    return  (self.frame.size.height/2)/(-min1.integerValue);
 }
 
 #pragma mark ----- 计算坐标
-- (CGPoint)shadowViewPointAtIndex:(NSInteger)index points:(NSArray *)points frame:(CGRect)rect range:(CGFloat)range{
+- (CGPoint)shadowViewPointAtIndex:(NSInteger)index points:(NSArray *)points frame:(CGRect)rect range:(CGFloat)range type:(WNChartLineType)type{
     
     CGFloat space = (rect.size.width)/(points.count);
-    
-    return CGPointMake(space *(index) + space/2, (rect.size.height - [points[index] floatValue] * range) + rect.origin.y);
-    
+    if (type == WNChartLineTypeMax) {
+         return CGPointMake(space *(index) + space/2, (rect.size.height - [points[index] floatValue] * range) + rect.origin.y);
+    }else{
+        
+         return CGPointMake(space *(index) + space/2, (-rect.size.height - [points[index] floatValue] * range) + rect.origin.y);
+    }
 }
 
 #pragma mark ----- 获取bezierPath
@@ -111,8 +116,10 @@ typedef NS_ENUM(NSInteger, WNChartLineType) {
     
     UIBezierPath *path=[UIBezierPath bezierPath];
     
+    
     for (NSInteger i=0;i<points.count;i++) {
-        CGPoint point=[self shadowViewPointAtIndex:i points:points frame:rect range:range];
+       
+        CGPoint point=[self shadowViewPointAtIndex:i points:points frame:rect range:range type:type];
         [self creatView:point];
         NSString * str;
         switch (type) {
@@ -123,7 +130,7 @@ typedef NS_ENUM(NSInteger, WNChartLineType) {
                 break;
             case WNChartLineTypeMin:
             {
-                str = [NSString stringWithFormat:@"-%@°",points[i]];
+                str = [NSString stringWithFormat:@"%@°",points[i]];
                 [self creatLabel:CGPointMake(point.x, point.y + 15) withIndex:i withText:str];
             }
                 break;
@@ -146,6 +153,7 @@ typedef NS_ENUM(NSInteger, WNChartLineType) {
 {
     UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 20)];
     label.text = text;
+    label.textColor = [UIColor whiteColor];
     label.center = point;
     label.textAlignment = NSTextAlignmentCenter;
     [self addSubview:label];
@@ -259,11 +267,11 @@ typedef NS_ENUM(NSInteger, WNChartLineType) {
     for (WNDaily_forecast *model in daily_forecast) {
         NSInteger max = [model.tmp[@"max"] integerValue];
         [_maxArray addObject:@(max)];
-        NSInteger min = labs([model.tmp[@"min"] integerValue]);
+        NSInteger min = [model.tmp[@"min"] integerValue];
         [_minArray addObject:@(min)];
     }
-//    NSLog(@"min%@",_minArray);
-//    NSLog(@"max%@",_maxArray);
+    NSLog(@"min%@",_minArray);
+    NSLog(@"max%@",_maxArray);
     if (_maxArray.count > 0) {
         _bgView.pathOnePoints = _maxArray;
         _bgView.pathTwoPoints = _minArray;

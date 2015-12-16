@@ -17,11 +17,5 @@
     _backView.layer.borderWidth = 0.5;
     _backView.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    
-}
-- (void)creatCellWithModel:(WNSuggestion *)model
-{
-
-
 }
 @end

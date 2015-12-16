@@ -14,6 +14,4 @@
 @property (weak, nonatomic) IBOutlet UILabel *brfLable;
 @property (weak, nonatomic) IBOutlet UILabel *txtLable;
 
-- (void)creatCellWithModel:(WNSuggestion *)model;
-
 @end

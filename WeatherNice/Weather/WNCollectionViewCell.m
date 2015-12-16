@@ -30,12 +30,6 @@
     _code_nImage.image = [[UIImage imageNamed:model.cond[@"code_n"]]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     _txt_dLable.text = model.cond[@"txt_d"];
     _txt_nLable.text = model.cond[@"txt_n"];
-    
-//    NSDictionary * temp = model.tmp;
-//    NSInteger max = [temp[@"max"] integerValue];
-//    
-//    NSInteger min = labs([temp[@"min"] integerValue]);
 
-    
 }
 @end

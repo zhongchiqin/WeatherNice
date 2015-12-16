@@ -40,6 +40,14 @@
 		8777260F1C204C2100E6AA02 /* WNSuggestionCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8777260D1C204C2100E6AA02 /* WNSuggestionCollectionViewCell.m */; };
 		877726101C204C2100E6AA02 /* WNSuggestionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8777260E1C204C2100E6AA02 /* WNSuggestionCollectionViewCell.xib */; };
 		878D6D8E1C1871A4000C78E2 /* WNAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878D6D8D1C1871A4000C78E2 /* WNAlertController.m */; };
+		879388561C210C1F00CE2886 /* WNButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 879388551C210C1F00CE2886 /* WNButton.m */; };
+		879388581C21265C00CE2886 /* ws_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 879388571C21265C00CE2886 /* ws_search@2x.png */; };
+		8793885A1C21285400CE2886 /* right_button_share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 879388591C21285400CE2886 /* right_button_share@2x.png */; };
+		8793885C1C2128D800CE2886 /* pp_location.png in Resources */ = {isa = PBXBuildFile; fileRef = 8793885B1C2128D800CE2886 /* pp_location.png */; };
+		8793885E1C213DC300CE2886 /* left_drawer_add_city_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8793885D1C213DC300CE2886 /* left_drawer_add_city_normal.png */; };
+		879388621C215C8B00CE2886 /* WNCitySearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 879388601C215C8B00CE2886 /* WNCitySearchViewController.m */; };
+		879388631C215C8B00CE2886 /* WNCitySearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 879388611C215C8B00CE2886 /* WNCitySearchViewController.xib */; };
+		879388651C215DC000CE2886 /* weather_ad_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 879388641C215DC000CE2886 /* weather_ad_close.png */; };
 		879D57661C1BB02B00167982 /* 101.png in Resources */ = {isa = PBXBuildFile; fileRef = 879D57331C1BB02B00167982 /* 101.png */; };
 		879D57671C1BB02B00167982 /* 102.png in Resources */ = {isa = PBXBuildFile; fileRef = 879D57341C1BB02B00167982 /* 102.png */; };
 		879D57681C1BB02B00167982 /* 103.png in Resources */ = {isa = PBXBuildFile; fileRef = 879D57351C1BB02B00167982 /* 103.png */; };
@@ -193,6 +201,16 @@
 		8777260E1C204C2100E6AA02 /* WNSuggestionCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WNSuggestionCollectionViewCell.xib; path = Weather/WNSuggestionCollectionViewCell.xib; sourceTree = "<group>"; };
 		878D6D8C1C1871A4000C78E2 /* WNAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WNAlertController.h; path = Other/WNAlertController.h; sourceTree = "<group>"; };
 		878D6D8D1C1871A4000C78E2 /* WNAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WNAlertController.m; path = Other/WNAlertController.m; sourceTree = "<group>"; };
+		879388541C210C1F00CE2886 /* WNButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WNButton.h; path = Other/WNButton.h; sourceTree = "<group>"; };
+		879388551C210C1F00CE2886 /* WNButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WNButton.m; path = Other/WNButton.m; sourceTree = "<group>"; };
+		879388571C21265C00CE2886 /* ws_search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ws_search@2x.png"; sourceTree = "<group>"; };
+		879388591C21285400CE2886 /* right_button_share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right_button_share@2x.png"; sourceTree = "<group>"; };
+		8793885B1C2128D800CE2886 /* pp_location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pp_location.png; sourceTree = "<group>"; };
+		8793885D1C213DC300CE2886 /* left_drawer_add_city_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left_drawer_add_city_normal.png; sourceTree = "<group>"; };
+		8793885F1C215C8B00CE2886 /* WNCitySearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WNCitySearchViewController.h; path = Weather/WNCitySearchViewController.h; sourceTree = "<group>"; };
+		879388601C215C8B00CE2886 /* WNCitySearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WNCitySearchViewController.m; path = Weather/WNCitySearchViewController.m; sourceTree = "<group>"; };
+		879388611C215C8B00CE2886 /* WNCitySearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WNCitySearchViewController.xib; path = Weather/WNCitySearchViewController.xib; sourceTree = "<group>"; };
+		879388641C215DC000CE2886 /* weather_ad_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weather_ad_close.png; sourceTree = "<group>"; };
 		879D57331C1BB02B00167982 /* 101.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 101.png; sourceTree = "<group>"; };
 		879D57341C1BB02B00167982 /* 102.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 102.png; sourceTree = "<group>"; };
 		879D57351C1BB02B00167982 /* 103.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 103.png; sourceTree = "<group>"; };
@@ -389,6 +407,8 @@
 				2F5D54051C0E03C200972007 /* WeatherNice.pch */,
 				878D6D8C1C1871A4000C78E2 /* WNAlertController.h */,
 				878D6D8D1C1871A4000C78E2 /* WNAlertController.m */,
+				879388541C210C1F00CE2886 /* WNButton.h */,
+				879388551C210C1F00CE2886 /* WNButton.m */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -411,8 +431,11 @@
 				2F5D56051C0E9DBC00972007 /* WNWeatherViewController.m */,
 				2F5D56231C0EC04300972007 /* WNLeftViewController.h */,
 				2F5D56241C0EC04300972007 /* WNLeftViewController.m */,
-				87F9428B1C19B089004E3F5E /* YWViewController.m */,
+				8793885F1C215C8B00CE2886 /* WNCitySearchViewController.h */,
+				879388601C215C8B00CE2886 /* WNCitySearchViewController.m */,
+				879388611C215C8B00CE2886 /* WNCitySearchViewController.xib */,
 				87F9428A1C19B089004E3F5E /* YWViewController.h */,
+				87F9428B1C19B089004E3F5E /* YWViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -475,6 +498,11 @@
 		2F5D55F61C0E9CE600972007 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				879388641C215DC000CE2886 /* weather_ad_close.png */,
+				8793885D1C213DC300CE2886 /* left_drawer_add_city_normal.png */,
+				8793885B1C2128D800CE2886 /* pp_location.png */,
+				879388571C21265C00CE2886 /* ws_search@2x.png */,
+				879388591C21285400CE2886 /* right_button_share@2x.png */,
 				871260221C1AEF3E00DA2A1A /* account_bg@2x.png */,
 				87EE1EDA1C2052C0002DAFBA /* suggestion */,
 				879D57311C1BB02B00167982 /* 天气图片 */,
@@ -800,6 +828,7 @@
 				879D57701C1BB02B00167982 /* 206.png in Resources */,
 				877726061C1FBAA000E6AA02 /* WNFourthTableViewCell.xib in Resources */,
 				87F942831C1957A1004E3F5E /* aqi_global.png in Resources */,
+				8793885E1C213DC300CE2886 /* left_drawer_add_city_normal.png in Resources */,
 				879D57901C1BB02B00167982 /* 502.png in Resources */,
 				879D578E1C1BB02B00167982 /* 500.png in Resources */,
 				879D57991C1BB08F00167982 /* 100.png in Resources */,
@@ -808,6 +837,7 @@
 				879D57921C1BB02B00167982 /* 504.png in Resources */,
 				879D57781C1BB02B00167982 /* 300.png in Resources */,
 				87EE1EDF1C2052C0002DAFBA /* info_11.png in Resources */,
+				8793885A1C21285400CE2886 /* right_button_share@2x.png in Resources */,
 				879D578B1C1BB02B00167982 /* 405.png in Resources */,
 				87EE1EE01C2052C0002DAFBA /* info_12.png in Resources */,
 				879D57861C1BB02B00167982 /* 400.png in Resources */,
@@ -836,6 +866,7 @@
 				879D57831C1BB02B00167982 /* 311.png in Resources */,
 				879D57771C1BB02B00167982 /* 213.png in Resources */,
 				879D57931C1BB02B00167982 /* 507.png in Resources */,
+				8793885C1C2128D800CE2886 /* pp_location.png in Resources */,
 				879D57711C1BB02B00167982 /* 207.png in Resources */,
 				879D577A1C1BB02B00167982 /* 302.png in Resources */,
 				87F942851C1957B0004E3F5E /* aqi_no2_background.png in Resources */,
@@ -843,12 +874,15 @@
 				879D57881C1BB02B00167982 /* 402.png in Resources */,
 				879D577F1C1BB02B00167982 /* 307.png in Resources */,
 				879D57741C1BB02B00167982 /* 210.png in Resources */,
+				879388581C21265C00CE2886 /* ws_search@2x.png in Resources */,
+				879388631C215C8B00CE2886 /* WNCitySearchViewController.xib in Resources */,
 				879D57851C1BB02B00167982 /* 313.png in Resources */,
 				2F5D56021C0E9CFC00972007 /* tabbar_weather_normal@2x.png in Resources */,
 				2F5D536D1C0DFE3400972007 /* Assets.xcassets in Resources */,
 				879D57841C1BB02B00167982 /* 312.png in Resources */,
 				879D577E1C1BB02B00167982 /* 306.png in Resources */,
 				2F5D536B1C0DFE3400972007 /* Main.storyboard in Resources */,
+				879388651C215DC000CE2886 /* weather_ad_close.png in Resources */,
 				87EE1EE11C2052C0002DAFBA /* info_17.png in Resources */,
 				87F9427D1C195728004E3F5E /* aqi_ entrance_bg.png in Resources */,
 				2F5D56031C0E9CFC00972007 /* tabbar_weather_select@2x.png in Resources */,
@@ -923,6 +957,7 @@
 				2F5D562C1C0EC51E00972007 /* UIView_extra.m in Sources */,
 				87F9427A1C194D4B004E3F5E /* WNFirstTableViewCell.m in Sources */,
 				2F5D53681C0DFE3400972007 /* ViewController.m in Sources */,
+				879388621C215C8B00CE2886 /* WNCitySearchViewController.m in Sources */,
 				879D579D1C1C706000167982 /* WNSecondTableViewCell.m in Sources */,
 				87F9426B1C19205A004E3F5E /* WNNow.m in Sources */,
 				2F5D560A1C0E9F6800972007 /* WNSceneViewController.m in Sources */,
@@ -937,6 +972,7 @@
 				87F942681C191B2A004E3F5E /* WNBasic.m in Sources */,
 				2F5D55F21C0E981600972007 /* WNNavController.m in Sources */,
 				2F5D53621C0DFE3400972007 /* main.m in Sources */,
+				879388561C210C1F00CE2886 /* WNButton.m in Sources */,
 				2F5D562B1C0EC51E00972007 /* LeftSlideViewController.m in Sources */,
 				2F5D56151C0EA07300972007 /* WNSelfViewController.m in Sources */,
 			);

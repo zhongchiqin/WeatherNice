@@ -2,7 +2,7 @@
 //  WNWeatherViewController.m
 //  WeatherNice
 //
-//  Created by LeYuan on 15/12/2.
+//  Created by 钟炽琴 on 15/12/2.
 //  Copyright © 2015年 ZCQ. All rights reserved.
 //
 
@@ -22,6 +22,7 @@
 #import "WNTNThirdTableVIewCell.h"
 #import "WNDaily_forecast.h"
 #import "WNFourthTableViewCell.h"
+#import "WNButton.h"
 
 static NSString * const Identifier1 = @"Identifier1";
 static NSString * const Identifier2 = @"Identifier2";
@@ -35,6 +36,9 @@ static NSString * const Identifier6 = @"Identifier6";
     UITableView *_tableView;
     NSMutableArray *_dataArray;
     NSMutableDictionary *_dict;
+    NSString *httpArg;
+    NSString *_city;
+    WNButton *centerButton;
 }
 @end
 
@@ -64,11 +68,27 @@ static NSString * const Identifier6 = @"Identifier6";
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"account_bg@2x"]];
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    [self creatNavigationBarButton];
     [self creatDataSource];
     [self creatTableView];
     
 }
 
+- (void)creatNavigationBarButton
+{
+    AppDelegate *appdalegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    UIWindow * window = appdalegate.window;
+    LeftSlideViewController * lsv = (LeftSlideViewController *)window.rootViewController;
+    WNButton *leftButton = [WNButton creatButtonWithType:UIButtonTypeCustom Title:@"" BackgoundImage:[UIImage imageNamed:@"ws_search@2x"] State:UIControlStateNormal Action:^(UIButton *sender) {
+        [lsv openLeftView];
+    }];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:leftButton];
+    WNButton *rigthButon = [WNButton creatButtonWithType:UIButtonTypeCustom Title:@"" BackgoundImage:[UIImage imageNamed:@"right_button_share@2x"] State:UIControlStateNormal Action:^(UIButton *sender) {
+        NSLog(@"分享");
+    }];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rigthButon];
+ 
+}
 //返回手势代理
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
@@ -81,14 +101,23 @@ static NSString * const Identifier6 = @"Identifier6";
 - (void)creatDataSource
 {
     NSString *httpUrl = @"http://apis.baidu.com/heweather/weather/free";
-    NSString *httpArg = @"city=beijing";
+    httpArg = @"city=beijing";
     _dict = [[NSMutableDictionary alloc]init];
     [WNRequest request:httpUrl withHttpArg:httpArg Complete:^(NSData *data) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         _dict = dict[@"HeWeather data service 3.0"][0];
-        NSLog(@"%@",_dict);
         dispatch_async(dispatch_get_main_queue(), ^{
+            
             [_tableView reloadData];
+            
+            _city = _dict[@"basic"][@"city"];
+            AppDelegate * appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            UIWindow * window = appdelegate.window;
+            LeftSlideViewController * lsv = (LeftSlideViewController *)window.rootViewController;
+            centerButton = [WNButton creatButtonWithType:UIButtonTypeCustom Title:_city BackgoundImage:nil State:UIControlStateNormal Action:^(UIButton *sender) {
+                [lsv openLeftView];
+            }];
+            self.navigationItem.titleView = centerButton;
         });
     } fail:^(NSError *error) {
         NSLog(@"%@",error);
@@ -158,6 +187,7 @@ static NSString * const Identifier6 = @"Identifier6";
         cell.backgroundColor = [UIColor clearColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.textLabel.text = @"七天预报";
+        cell.textLabel.textColor = [UIColor whiteColor];
         return cell;
     }else if(indexPath.row == 3){
         WNTNThirdTableVIewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier4];
@@ -170,6 +200,7 @@ static NSString * const Identifier6 = @"Identifier6";
         cell.backgroundColor = [UIColor clearColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.textLabel.text = @"指数";
+        cell.textLabel.textColor = [UIColor whiteColor];
         return cell;
     }else {
         WNFourthTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier5];

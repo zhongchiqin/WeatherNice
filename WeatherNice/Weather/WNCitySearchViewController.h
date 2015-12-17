@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WNCitySearchViewController : UIViewController
+@interface WNCitySearchViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 @end

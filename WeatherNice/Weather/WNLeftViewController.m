@@ -49,7 +49,7 @@ static NSString * const Identifier = @"Identifier";
     _tableView.backgroundColor = [UIColor whiteColor];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    _tableView.rowHeight = 80;
+    _tableView.rowHeight = 50;
     [self.view addSubview:_tableView];
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:Identifier];
 }

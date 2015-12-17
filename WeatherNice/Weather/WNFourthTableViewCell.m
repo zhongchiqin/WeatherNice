@@ -37,7 +37,6 @@ static NSString * const Identifier = @"Identifier";
     collectionView.backgroundColor = [UIColor clearColor];
     collectionView.delegate = self;
     collectionView.dataSource = self;
-//    collectionView.backgroundColor = [UIColor yellowColor];
     [collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
 
     UINib *nib = [UINib nibWithNibName:@"WNSuggestionCollectionViewCell" bundle:nil];

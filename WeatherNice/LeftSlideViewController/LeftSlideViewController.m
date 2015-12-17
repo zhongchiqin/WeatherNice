@@ -67,7 +67,7 @@
             }
         }
         self.leftTableview.backgroundColor = [UIColor clearColor];
-        self.leftTableview.frame = CGRectMake(0, 0, kScreenWidth - kMainPageDistance , kScreenHeight);
+        self.leftTableview.frame = CGRectMake(0, 120, kScreenWidth - kMainPageDistance , kScreenHeight-120);
         //设置左侧tableview的初始位置和缩放系数
         self.leftTableview.transform = CGAffineTransformMakeScale(kLeftScale, kLeftScale);
         self.leftTableview.center = CGPointMake(kLeftCenterX , kScreenHeight * 0.5);

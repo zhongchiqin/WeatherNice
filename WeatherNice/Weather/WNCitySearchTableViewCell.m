@@ -24,13 +24,15 @@
 
 -(void)creatButton
 {
-//    for (int i = 0; i < 5; i++) {
-//        for (int i = 0; i < 3; i++) {
-//            UIButton *button = [UIButton alloc]initWithFrame:CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
-//        }
-//    }
-//
-//
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 3; j++) {
+            UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(10+j*(WScreenWidth/3) , 10 + i *(200/3), WScreenWidth/3, 200/3)];
+            button.layer.cornerRadius = 10;
+            [self.contentView addSubview:button];
+        }
+    }
+
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

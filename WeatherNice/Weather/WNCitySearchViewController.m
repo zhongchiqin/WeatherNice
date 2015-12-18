@@ -10,7 +10,7 @@
 #import "WNButton.h"
 #import "LeftSlideViewController.h"
 #import "AppDelegate.h"
-
+#import "WNCitySearchTableViewCell.h"
 
 
 @interface WNCitySearchViewController ()
@@ -54,6 +54,9 @@ static NSString * const Identifier = @"Identifier";
     //contentMode = UIViewContentModeScaleAspectFill时，高度改变宽度也跟着改变
     _zoomImageView.contentMode = UIViewContentModeScaleAspectFill;//重点（不设置那将只会被纵向拉伸）
     [_tableView addSubview:_zoomImageView];
+    [_tableView registerClass:[WNCitySearchTableViewCell class] forCellReuseIdentifier:Identifier];
+    
+    
     //设置autoresizesSubviews让子类自动布局
     _zoomImageView.autoresizesSubviews = YES;
 //    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
@@ -105,8 +108,7 @@ static NSString * const Identifier = @"Identifier";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:Identifier];
-    cell.textLabel.text = @"frewg";
+    WNCitySearchTableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:Identifier];
     return cell;
 
 }

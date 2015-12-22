@@ -16,10 +16,10 @@
 @interface WNCitySearchViewController ()<UITextFieldDelegate>
 
 {
-    UIImageView *_zoomImageView;//变焦图片做底层
-    UICollectionView *collectionView;
-    UITableView *  _tableView;
-    UITextField * _searchTextField;
+    UIImageView *       _zoomImageView;//变焦图片做底层
+    UICollectionView *  collectionView;
+    UITableView *       _tableView;
+    UITextField *       _searchTextField;
 
 }
 

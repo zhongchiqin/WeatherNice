@@ -15,8 +15,8 @@
 static NSString * const Identifier = @"Identifier";
 @interface WNLeftViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
-    UITableView *_tableView;
-    NSMutableArray *_dataArray;
+    UITableView *     _tableView;
+    NSMutableArray *  _dataArray;
 }
 @end
 
@@ -91,15 +91,12 @@ static NSString * const Identifier = @"Identifier";
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.rowHeight = 50;
- 
     [self.view addSubview:_tableView];
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:Identifier];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
-    
     return _dataArray.count;
 }
 
@@ -120,16 +117,7 @@ static NSString * const Identifier = @"Identifier";
     [leftvc closeLeftView];
     
 }
-/**
- *  这
- *
- *  @param NSArray
- *
- UITableViewRowActionStyleDefault = 0,
- UITableViewRowActionStyleDestructive = UITableViewRowActionStyleDefault,
- UITableViewRowActionStyleNormal
- *  @return
- */
+
 -(NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewRowAction *test1 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {

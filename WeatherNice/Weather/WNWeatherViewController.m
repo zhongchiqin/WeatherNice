@@ -199,20 +199,18 @@ static NSString * const Identifier6 = @"Identifier6";
                 NSLog(@"失败");
                 UIAlertView *alertV = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"查无此项" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alertV show];
-                //              [_tableView reloadData];
             }
             
         });
     } fail:^(NSError *error) {
         NSLog(@"==========%@",error);
-        //        [_tableView reloadData];
         
     }];
 }
 
 - (void)creatTableView
 {
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, WScreenWidth, WScreenHeight-64)];
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, WScreenWidth, WScreenHeight-64-49)];
     _tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     _tableView.delegate = self;
     _tableView.dataSource = self;

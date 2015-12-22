@@ -66,8 +66,9 @@ static NSString * const Identifier6 = @"Identifier6";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"account_bg@2x"]];
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
+    imageView.image = [UIImage imageNamed:@"account_bg@2x"];
+    [self.view addSubview:imageView];
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     [self creatNavigationBarButton];
     _dataArray = [[NSMutableArray alloc]init];
@@ -179,12 +180,12 @@ static NSString * const Identifier6 = @"Identifier6";
                     
                 }else{
                     
-                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-                [_dataArray addObject:_city];
-                [userDefaults setObject:_dataArray forKey:@"array"];
-                [userDefaults synchronize];
+                    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                    [_dataArray addObject:_city];
+                    [userDefaults setObject:_dataArray forKey:@"array"];
+                    [userDefaults synchronize];
                     
-                [[NSNotificationCenter defaultCenter]postNotificationName:@"sendArray" object:nil userInfo:@{@"array":_dataArray}];
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"sendArray" object:nil userInfo:@{@"array":_dataArray}];
                     
                 }
                 AppDelegate * appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -198,13 +199,13 @@ static NSString * const Identifier6 = @"Identifier6";
                 NSLog(@"失败");
                 UIAlertView *alertV = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"查无此项" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alertV show];
-//              [_tableView reloadData];
+                //              [_tableView reloadData];
             }
-           
+            
         });
     } fail:^(NSError *error) {
         NSLog(@"==========%@",error);
-//        [_tableView reloadData];
+        //        [_tableView reloadData];
         
     }];
 }

@@ -10,7 +10,6 @@
 #define WNConstant_h
 
 //屏幕高度
-
 #define WScreenWidth [UIScreen mainScreen].bounds.size.width
 
 //屏幕宽度

@@ -146,7 +146,7 @@
                 <outlet property="WindLable" destination="Sn3-P1-FK0" id="pKP-8h-uD7"/>
                 <outlet property="headImage" destination="17w-Z9-XAa" id="3Vc-5D-vI4"/>
             </connections>
-            <point key="canvasLocation" x="292" y="35"/>
+            <point key="canvasLocation" x="167" y="38"/>
         </tableViewCell>
     </objects>
     <resources>

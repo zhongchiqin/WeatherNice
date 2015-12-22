@@ -11,9 +11,9 @@
 #import "LeftSlideViewController.h"
 #import "AppDelegate.h"
 #import "WNCitySearchTableViewCell.h"
+#import "WNSearchViewController.h"
 
-
-@interface WNCitySearchViewController ()
+@interface WNCitySearchViewController ()<UITextFieldDelegate>
 
 {
     UIImageView *_zoomImageView;//变焦图片做底层
@@ -25,7 +25,7 @@
 
 @end
 static NSString * const Identifier = @"Identifier";
-#define ImageHight 200.f
+#define ImageHight 215.f
 
 @implementation WNCitySearchViewController
 
@@ -44,8 +44,9 @@ static NSString * const Identifier = @"Identifier";
     _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, WScreenWidth, WScreenHeight) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    _tableView.rowHeight = 200;
+    _tableView.rowHeight = 250;
     _tableView.contentInset = UIEdgeInsetsMake(ImageHight, 0, 0, 0);
+    _tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     [self.view addSubview:_tableView];
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:Identifier];
     _zoomImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"1"]];
@@ -56,13 +57,8 @@ static NSString * const Identifier = @"Identifier";
     [_tableView addSubview:_zoomImageView];
     [_tableView registerClass:[WNCitySearchTableViewCell class] forCellReuseIdentifier:Identifier];
     
-    
     //设置autoresizesSubviews让子类自动布局
     _zoomImageView.autoresizesSubviews = YES;
-//    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-//    UIWindow *window = delegate.window;
-//    LeftSlideViewController *leftController = (LeftSlideViewController *)window.rootViewController;
-//    [leftController setEditing:YES];
     WNButton *close = [WNButton creatButtonWithFrame:CGRectMake(20, 20, 40, 40) Title:nil BackgoundImage:[UIImage imageNamed:@"weather_ad_close"] State:UIControlStateNormal Action:^(UIButton *sender) {
         
         //        [leftController closeLeftView];
@@ -74,7 +70,9 @@ static NSString * const Identifier = @"Identifier";
     _searchTextField.layer.borderWidth = 0.5;
     _searchTextField.layer.borderColor = [UIColor blackColor].CGColor;
     _searchTextField.layer.cornerRadius = 20;
+    _searchTextField.delegate = self;
     _searchTextField.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    
     [_zoomImageView addSubview:_searchTextField];
     
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, ImageHight - 90, WScreenWidth, 40)];
@@ -87,8 +85,13 @@ static NSString * const Identifier = @"Identifier";
    
     //设置autoresizesSubviews让子类自动布局
     _zoomImageView.autoresizesSubviews = YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
     
 }
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
     CGFloat y = scrollView.contentOffset.y;//根据实际选择加不加上NavigationBarHight（44、64 或者没有导航条）
@@ -98,9 +101,11 @@ static NSString * const Identifier = @"Identifier";
         frame.size.height =  -y;//contentMode = UIViewContentModeScaleAspectFill时，高度改变宽度也跟着改变
         _zoomImageView.frame = frame;
     }
+    if (y > 30) {
+        NSLog(@"vre");
+    }
     
 }
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 2;
@@ -109,8 +114,13 @@ static NSString * const Identifier = @"Identifier";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WNCitySearchTableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:Identifier];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.vc = self;
+    if (indexPath.row == 0) {
+        cell.lable.text = @"热门城市";
+    }else
+        cell.lable.text = @"热门景点";
     return cell;
-
 }
 
 

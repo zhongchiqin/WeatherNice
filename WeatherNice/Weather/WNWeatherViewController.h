@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "WNLeftViewController.h"
 
 @interface WNWeatherViewController : UIViewController
+
+@property(nonatomic,strong)NSString *cityStr;
 
 @end

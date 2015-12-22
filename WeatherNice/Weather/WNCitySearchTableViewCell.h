@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "WNCitySearchViewController.h"
 @interface WNCitySearchTableViewCell : UITableViewCell
+
+@property (nonatomic, strong) WNCitySearchViewController * vc;
+@property (nonatomic, strong) UILabel *lable;
 
 @end

@@ -22,12 +22,26 @@ typedef NS_ENUM(NSInteger, WNChartLineType) {
 };
 
 @interface WNChartLineView : UIView
-
+/**
+ *
+ */
 @property (nonatomic, strong) NSArray * pathOnePoints;
+/**
+ *
+ */
 @property (nonatomic, strong) NSArray * pathTwoPoints;
+/**
+ *
+ */
 @property (nonatomic, strong, readonly) CAShapeLayer * layer1;
+/**
+ *
+ */
 @property (nonatomic, strong, readonly) CAShapeLayer * layer2;
-
+/**
+ *  移除线和label
+ */
+@property (nonatomic, assign) BOOL removeLine;
 
 @end
 
@@ -41,6 +55,28 @@ typedef NS_ENUM(NSInteger, WNChartLineType) {
     
     return self;
 }
+- (void)setRemoveLine:(BOOL)removeLine
+{
+    _removeLine = removeLine;
+    if (removeLine) {
+        
+        [_layer1 removeFromSuperlayer];
+        _layer1 = nil;
+        
+        [_layer2 removeFromSuperlayer];
+        _layer2 = nil;
+        
+//        删除所有子视图（lable、点）
+        NSArray * subViews = self.subviews;
+       
+        for (UIView * view in subViews) {
+            
+            [view removeFromSuperview];
+            
+           // [self addSubview:view];
+        }
+    }
+}
 
 - (void)setPathOnePoints:(NSArray *)pathOnePoints
 {
@@ -51,7 +87,8 @@ typedef NS_ENUM(NSInteger, WNChartLineType) {
         _layer1 = nil;
     }
 #pragma mark ------ 创建第一条线
-    UIBezierPath * path = [self graphPathFromPoints:pathOnePoints rect:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height/2) range:[self getMaxRange:_pathOnePoints] type:WNChartLineTypeMax];
+    NSArray * newArray = [self getNewArray:pathOnePoints];
+    UIBezierPath * path = [self graphPathFromPoints:newArray rect:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height/2 - 10) range:[self getMaxRange:newArray] type:WNChartLineTypeMax];
     //实例化layer
     _layer1 = [CAShapeLayer layer];
     //传入路径
@@ -68,13 +105,13 @@ typedef NS_ENUM(NSInteger, WNChartLineType) {
 
 - (void)setPathTwoPoints:(NSArray *)pathTwoPoints
 {
-    _pathOnePoints = pathTwoPoints;
+    _pathTwoPoints = pathTwoPoints;
     if (_layer2) {
         [_layer2 removeFromSuperlayer];
         _layer2 = nil;
     }
     #pragma mark ------ 创建第二条线
-    UIBezierPath * path = [self graphPathFromPoints:pathTwoPoints rect:CGRectMake(0, self.frame.size.height/2+10, self.frame.size.width, self.frame.size.height/2-10) range:[self getMinRange:_pathOnePoints] type:WNChartLineTypeMin];
+    UIBezierPath * path = [self graphPathFromPoints:[self getNewArray:pathTwoPoints] rect:CGRectMake(0, self.frame.size.height/2 + 10, self.frame.size.width, self.frame.size.height/2 -10) range:[self getMinRange:_pathOnePoints] type:WNChartLineTypeMin];
     
     _layer2 = [CAShapeLayer layer];
     _layer2.path = path.CGPath;
@@ -87,27 +124,72 @@ typedef NS_ENUM(NSInteger, WNChartLineType) {
 
 - (CGFloat)getMaxRange:(NSArray *)array
 {
-    //找到NSArray的最大值
+    //找到NSArray的最大、小值
     NSNumber* max1=[array valueForKeyPath:@"@max.floatValue"];
-    return  (self.frame.size.height/2)/(max1.integerValue);
+    NSNumber* min1=[array valueForKeyPath:@"@min.floatValue"];
+  
+    return labs(max1.integerValue - min1.integerValue);
+  
+  
+    
+}
+- (NSArray *)getNewArray:(NSArray *)array
+{
+  //  NSNumber* max1=[array valueForKeyPath:@"@max.floatValue"];
+    NSNumber* min1=[array valueForKeyPath:@"@min.floatValue"];
+    if(min1.integerValue < 0){
+        NSInteger k = 0;
+        
+        NSMutableArray * array1 = [[NSMutableArray alloc] init];
+        
+        for (NSInteger i = 0; i < array.count; i++) {
+        
+            NSNumber * number = array[i];
+            
+            k = number.integerValue +  labs(min1.integerValue);
+            [array1 addObject:[NSNumber numberWithInteger:k]];
+        }
+        NSLog(@"数组存在负数%@",array1);
+        return [array1 copy];
+        
+    }else{
+        NSInteger k = 0;
+        
+        NSMutableArray * array1 = [[NSMutableArray alloc] init];
+        
+        for (NSInteger i = 0; i < array.count; i++) {
+            
+            NSNumber * number = array[i];
+            
+            k = number.integerValue -  labs(min1.integerValue);
+            [array1 addObject:[NSNumber numberWithInteger:k]];
+        }
+        NSLog(@"数组存在负数%@",array1);
+        return [array1 copy];
+    }
 }
 - (CGFloat)getMinRange:(NSArray *)array
 {
-    //找到NSArray的最小值
+    //找到NSArray的最大、小值
+    NSNumber* max1=[array valueForKeyPath:@"@max.floatValue"];
     NSNumber* min1=[array valueForKeyPath:@"@min.floatValue"];
     NSLog(@"===%@",min1);
-    return  (self.frame.size.height/2)/(-min1.integerValue);
+    return labs(max1.integerValue - min1.integerValue);
 }
 
 #pragma mark ----- 计算坐标
 - (CGPoint)shadowViewPointAtIndex:(NSInteger)index points:(NSArray *)points frame:(CGRect)rect range:(CGFloat)range type:(WNChartLineType)type{
-    
+
     CGFloat space = (rect.size.width)/(points.count);
     if (type == WNChartLineTypeMax) {
-         return CGPointMake(space *(index) + space/2, (rect.size.height - [points[index] floatValue] * range) + rect.origin.y);
+        CGFloat hSpace = rect.size.height / range;
+        CGPoint point = CGPointMake(space *(index) + space/2, rect.size.height - hSpace * [points[index] integerValue]);
+        return point;
     }else{
+        CGFloat hSpace = rect.size.height / range;
         
-         return CGPointMake(space *(index) + space/2, (-rect.size.height - [points[index] floatValue] * range) + rect.origin.y);
+        CGPoint point = CGPointMake(space *(index) + space/2, rect.size.height - hSpace * [points[index] integerValue] + rect.origin.y);
+        return point;
     }
 }
 
@@ -124,13 +206,17 @@ typedef NS_ENUM(NSInteger, WNChartLineType) {
         NSString * str;
         switch (type) {
             case WNChartLineTypeMax:{
-                str = [NSString stringWithFormat:@"%@°",points[i]];
+                
+                str = [NSString stringWithFormat:@"%@°",
+                       self.pathOnePoints[i]];
+                
                 [self creatLabel:CGPointMake(point.x, point.y - 15) withIndex:i withText:str];
             }
                 break;
             case WNChartLineTypeMin:
             {
-                str = [NSString stringWithFormat:@"%@°",points[i]];
+                str = [NSString stringWithFormat:@"%@°",
+                       self.pathTwoPoints[i]];
                 [self creatLabel:CGPointMake(point.x, point.y + 15) withIndex:i withText:str];
             }
                 break;
@@ -201,7 +287,7 @@ typedef NS_ENUM(NSInteger, WNChartLineType) {
 {
     _bgView = [[WNChartLineView alloc]initWithFrame:CGRectMake(0, 0, WScreenWidth + WScreenWidth/6, 80)];
     _bgView.center = CGPointMake((WScreenWidth + WScreenWidth/6)/2, self.center.y);
-    //_bgView.backgroundColor = [UIColor redColor];
+  //  _bgView.backgroundColor = [UIColor redColor];
     _bgView.userInteractionEnabled = NO;
     [collctionView addSubview:_bgView];
     
@@ -272,16 +358,22 @@ typedef NS_ENUM(NSInteger, WNChartLineType) {
     }
     NSLog(@"min%@",_minArray);
     NSLog(@"max%@",_maxArray);
-    if (_maxArray.count > 0) {
-        _bgView.pathOnePoints = _maxArray;
-        _bgView.pathTwoPoints = _minArray;
+  
+    if (_bgView) {
+       
+        if (_maxArray.count > 0) {
+            _bgView.removeLine = YES;
+
+            _bgView.pathOnePoints = _maxArray;
+            _bgView.pathTwoPoints = _minArray;
+        }else {
+            _bgView.removeLine = YES;
+            
+        }
+    
     }
+  
 
-}
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

@@ -33,12 +33,11 @@ static NSString * const Identifier6 = @"Identifier6";
 
 @interface WNWeatherViewController ()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
 {
-    UITableView *_tableView;
-    NSMutableArray *_dataArray;
-    NSMutableDictionary *_dict;
-    NSString *httpArg;
-    NSString *_city;
-    WNButton *centerButton;
+    UITableView *           _tableView;
+    NSMutableArray *        _dataArray;
+    NSMutableDictionary *   _dict;
+    NSString *              _city;
+    WNButton *              centerButton;
 }
 @end
 
@@ -58,6 +57,7 @@ static NSString * const Identifier6 = @"Identifier6";
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
+    
     AppDelegate * appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     UIWindow * window = appdelegate.window;
     LeftSlideViewController * lsv = (LeftSlideViewController *)window.rootViewController;
@@ -66,12 +66,73 @@ static NSString * const Identifier6 = @"Identifier6";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"account_bg@2x"]];
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     [self creatNavigationBarButton];
-    [self creatDataSource];
+    _dataArray = [[NSMutableArray alloc]init];
+
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    if ([ud objectForKey:@"array"] == nil) {
+        _cityStr = @"beijing";
+    }else{
+        NSArray *arr = [ud objectForKey:@"array"];
+        _dataArray = [NSMutableArray arrayWithArray:arr];
+        _cityStr = [arr objectAtIndex:arr.count-1];
+        NSLog(@"+++++%@",_cityStr);
+         _cityStr = [self chineseCharactersIntoPinyinWithCityname:_cityStr];
+    }
+    [self creatDataSourceWithHttpArg:_cityStr];
+    [self addNotification];
     [self creatTableView];
     
+}
+- (void)addNotification
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(upDateTitle:) name:@"CitySearchViewController" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadData:) name:@"sendStr" object:nil];
+}
+- (void)reloadData:(NSNotification *)nc
+{
+    NSDictionary * dict = nc.userInfo;
+    NSString *cityStr = [self chineseCharactersIntoPinyinWithCityname:dict[@"cityStr"]];
+    NSLog(@"%@",cityStr);
+    if (dict[@"cityStr"]) {
+        [self creatDataSourceWithHttpArg:cityStr];
+    }
+}
+- (void)upDateTitle:(NSNotification *)nc
+{
+    NSDictionary * dict = nc.userInfo;
+    NSString *cityStr = [self chineseCharactersIntoPinyinWithCityname:dict[@"cityName"]];
+    NSLog(@"%@",cityStr);
+    if (dict[@"cityName"]) {
+        [self creatDataSourceWithHttpArg:cityStr];
+    }
+}
+
+#pragma mark---------将汉字转化成拼音（数据请求用到拼音）
+- (NSString *)chineseCharactersIntoPinyinWithCityname:(NSString *)cityName{
+    //把汉字装换成拼音
+    NSString * st = [[NSMutableString alloc]init];
+    if ([cityName length]) {
+        NSMutableString *ms = [[NSMutableString alloc] initWithString:cityName];
+        if (CFStringTransform((__bridge CFMutableStringRef)ms, 0, kCFStringTransformMandarinLatin, NO)) {
+        }
+        if (CFStringTransform((__bridge CFMutableStringRef)ms, 0, kCFStringTransformStripDiacritics, NO)) {
+            
+            //ms为汉字转换成拼音  但是有空格  还要剔除空格
+            NSString *str = ms;
+            for (int i = 0; i < str.length; i++) {
+                unichar c = [str characterAtIndex:i];
+                if (c>='a'&&c<='z') {
+                    st = [NSMutableString stringWithFormat:@"%@%c",st,c];
+                }
+            }
+        }
+    }
+    return st;
+
 }
 
 - (void)creatNavigationBarButton
@@ -98,29 +159,53 @@ static NSString * const Identifier6 = @"Identifier6";
     return NO;
 }
 
-- (void)creatDataSource
+- (void)creatDataSourceWithHttpArg:(NSString *)httpArg
 {
     NSString *httpUrl = @"http://apis.baidu.com/heweather/weather/free";
-    httpArg = @"city=beijing";
+//    httpArg = @"city=beijing";
     _dict = [[NSMutableDictionary alloc]init];
-    [WNRequest request:httpUrl withHttpArg:httpArg Complete:^(NSData *data) {
+    NSString *str = [NSString stringWithFormat:@"city=%@",httpArg];
+    [WNRequest request:httpUrl withHttpArg:str Complete:^(NSData *data) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-        _dict = dict[@"HeWeather data service 3.0"][0];
         dispatch_async(dispatch_get_main_queue(), ^{
+            _dict = dict[@"HeWeather data service 3.0"][0];
             
-            [_tableView reloadData];
-            
-            _city = _dict[@"basic"][@"city"];
-            AppDelegate * appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-            UIWindow * window = appdelegate.window;
-            LeftSlideViewController * lsv = (LeftSlideViewController *)window.rootViewController;
-            centerButton = [WNButton creatButtonWithType:UIButtonTypeCustom Title:_city BackgoundImage:nil State:UIControlStateNormal Action:^(UIButton *sender) {
-                [lsv openLeftView];
-            }];
-            self.navigationItem.titleView = centerButton;
+            if ([_dict[@"status"]isEqualToString:@"ok"]) {
+                
+                [_tableView reloadData];
+                NSLog(@"%@",_dict);
+                _city = _dict[@"basic"][@"city"];
+                if ([_dataArray containsObject:_city]) {
+                    
+                }else{
+                    
+                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                [_dataArray addObject:_city];
+                [userDefaults setObject:_dataArray forKey:@"array"];
+                [userDefaults synchronize];
+                    
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"sendArray" object:nil userInfo:@{@"array":_dataArray}];
+                    
+                }
+                AppDelegate * appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                UIWindow * window = appdelegate.window;
+                LeftSlideViewController * lsv = (LeftSlideViewController *)window.rootViewController;
+                centerButton = [WNButton creatButtonWithType:UIButtonTypeCustom Title:_city BackgoundImage:nil State:UIControlStateNormal Action:^(UIButton *sender) {
+                    [lsv openLeftView];
+                }];
+                self.navigationItem.titleView = centerButton;
+            }else{
+                NSLog(@"失败");
+                UIAlertView *alertV = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"查无此项" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertV show];
+//              [_tableView reloadData];
+            }
+           
         });
     } fail:^(NSError *error) {
-        NSLog(@"%@",error);
+        NSLog(@"==========%@",error);
+//        [_tableView reloadData];
+        
     }];
 }
 

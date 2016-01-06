@@ -12,7 +12,9 @@
 #import "LeftSlideViewController.h"
 #import "WNWeatherViewController.h"
 #import "AppDelegate.h"
+
 static NSString * const Identifier = @"Identifier";
+
 @interface WNLeftViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UITableView *     _tableView;

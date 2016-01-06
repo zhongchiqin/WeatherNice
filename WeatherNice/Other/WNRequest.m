@@ -51,6 +51,7 @@
             success(data);;
         }    }];
     [dataTask resume];
+    
 //    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
 //        if (connectionError) {
 //            failture(connectionError);

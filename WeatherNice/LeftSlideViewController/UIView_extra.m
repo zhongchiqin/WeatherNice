@@ -159,15 +159,15 @@
  */
 + (void) showAlertView: (NSString*) title andMessage: (NSString *) message
 {
-    dispatch_async(dispatch_get_main_queue() , ^{
+    
         UIAlertView *alert = [[UIAlertView alloc] init];
         alert.title = title;
         alert.message = message;
         [alert addButtonWithTitle:@"确定"];
         [alert show];
         alert = nil;
-    });
 }
+
 
 /**
  *  弹窗
@@ -180,7 +180,7 @@
             andMessage: (NSString *) message
           withDelegate: (UIViewController<UIAlertViewDelegate> *) delegate
 {
-    dispatch_async(dispatch_get_main_queue() , ^{
+    
         UIAlertView *alert = [[UIAlertView alloc] init];
         alert.title = title;
         alert.message = message;
@@ -189,7 +189,6 @@
         [alert addButtonWithTitle:@"确定"];
         [alert show];
         alert = nil;
-    });
 }
 
 

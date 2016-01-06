@@ -76,13 +76,12 @@ static NSString * const Identifier = @"Identifier";
     [_zoomImageView addSubview:_searchTextField];
     
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, ImageHight - 90, WScreenWidth, 40)];
-    label.text = @"你来过，我记得，便是永远。";
+    label.text = @"你来过，我记得。";
     label.textAlignment = NSTextAlignmentRight;
     label.textColor = [UIColor whiteColor];
     label.font = [UIFont systemFontOfSize:23];
     label.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     [_zoomImageView addSubview:label];
-   
     //设置autoresizesSubviews让子类自动布局
     _zoomImageView.autoresizesSubviews = YES;
 }

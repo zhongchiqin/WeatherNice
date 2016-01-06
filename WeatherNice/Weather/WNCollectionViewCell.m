@@ -18,7 +18,6 @@
     _view.layer.borderWidth = 0.5;
     _view.layer.borderColor = [UIColor whiteColor].CGColor;
     _view.backgroundColor = [UIColor clearColor];
- 
 }
 
 - (void)creatCollectionViewCellWithModel:(WNDaily_forecast *)model

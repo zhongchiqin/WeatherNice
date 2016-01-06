@@ -47,7 +47,6 @@ static NSString * const Identifier6 = @"Identifier6";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
     AppDelegate *appdalegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     UIWindow * window = appdalegate.window;
     LeftSlideViewController * lsv = (LeftSlideViewController *)window.rootViewController;
@@ -57,7 +56,6 @@ static NSString * const Identifier6 = @"Identifier6";
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    
     AppDelegate * appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     UIWindow * window = appdelegate.window;
     LeftSlideViewController * lsv = (LeftSlideViewController *)window.rootViewController;
@@ -121,7 +119,6 @@ static NSString * const Identifier6 = @"Identifier6";
         if (CFStringTransform((__bridge CFMutableStringRef)ms, 0, kCFStringTransformMandarinLatin, NO)) {
         }
         if (CFStringTransform((__bridge CFMutableStringRef)ms, 0, kCFStringTransformStripDiacritics, NO)) {
-            
             //ms为汉字转换成拼音  但是有空格  还要剔除空格
             NSString *str = ms;
             for (int i = 0; i < str.length; i++) {
@@ -186,7 +183,6 @@ static NSString * const Identifier6 = @"Identifier6";
                     [userDefaults synchronize];
                     
                     [[NSNotificationCenter defaultCenter]postNotificationName:@"sendArray" object:nil userInfo:@{@"array":_dataArray}];
-                    
                 }
                 AppDelegate * appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
                 UIWindow * window = appdelegate.window;
@@ -200,11 +196,9 @@ static NSString * const Identifier6 = @"Identifier6";
                 UIAlertView *alertV = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"查无此项" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alertV show];
             }
-            
         });
     } fail:^(NSError *error) {
         NSLog(@"==========%@",error);
-        
     }];
 }
 

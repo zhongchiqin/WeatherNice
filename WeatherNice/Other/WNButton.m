@@ -45,7 +45,6 @@ typedef void(^Dotype) (WNButton *sender);
     
     button->touch = btn;
     return button;
-    return button;
 }
 -(void) click:(WNButton*)sender{
     //回调block，处理事件

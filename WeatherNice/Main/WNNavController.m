@@ -16,7 +16,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationBar.translucent = NO;
-  //  self.navigationBar.barTintColor = [UIColor blackColor];
+//    self.navigationBar.barTintColor = [UIColor blackColor];
     self.navigationBar.alpha = 0.5;
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[NSFontAttributeName] = [UIFont systemFontOfSize:20];

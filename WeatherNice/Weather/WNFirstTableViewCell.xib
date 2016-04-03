@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -17,7 +17,6 @@
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qC7-AM-fOG">
                         <rect key="frame" x="8" y="228" width="164" height="123.5"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="164" id="G5O-pN-OCt"/>
                             <constraint firstAttribute="height" constant="123.5" id="beP-vj-eaA"/>
@@ -25,7 +24,6 @@
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Wr-Kx-BVN">
                         <rect key="frame" x="16" y="228" width="156" height="79"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="156" id="9qL-dX-AkQ"/>
                         </constraints>
@@ -35,7 +33,6 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="无持续风向3级" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sn3-P1-FK0">
                         <rect key="frame" x="8" y="309" width="96" height="24.5"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="96" id="g1B-uH-zab"/>
                             <constraint firstAttribute="height" constant="24.5" id="m8y-Av-eft"/>
@@ -46,7 +43,6 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="湿度22%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5NE-Qy-Rpe">
                         <rect key="frame" x="112" y="309" width="52" height="24.5"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24.5" id="Abm-UC-KEz"/>
                         </constraints>
@@ -56,7 +52,6 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="发布时间" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rLH-bD-6O0">
                         <rect key="frame" x="178" y="7" width="134" height="32"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="134" id="0wi-MR-Ouc"/>
                             <constraint firstAttribute="height" constant="32" id="YZc-ku-W8h"/>
@@ -67,7 +62,6 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小雨夹雪" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iuu-5b-sGS">
                         <rect key="frame" x="8" y="183" width="96" height="37"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="37" id="mKB-WS-Nfj"/>
                             <constraint firstAttribute="width" constant="96" id="rdj-kN-w48"/>
@@ -78,23 +72,19 @@
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Mt-x5-Ds6">
                         <rect key="frame" x="8" y="7" width="76" height="34"/>
-                        <animations/>
                         <state key="normal" backgroundImage="aqi_ entrance_bg.png"/>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="aqi_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="9K6-id-GiM">
                         <rect key="frame" x="16" y="12" width="22" height="22"/>
-                        <animations/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="52优" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kFr-KW-LGn">
                         <rect key="frame" x="40" y="12" width="42" height="22"/>
-                        <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="17w-Z9-XAa">
                         <rect key="frame" x="134" y="170" width="82" height="82"/>
-                        <animations/>
                         <color key="tintColor" red="0.9794469898" green="1" blue="0.99855474820000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="82" id="8ea-Mt-ePd"/>
@@ -103,7 +93,6 @@
                     </imageView>
                     <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qV3-mY-Kk5">
                         <rect key="frame" x="8" y="170" width="106" height="50"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="mLC-cc-xCr"/>
                             <constraint firstAttribute="width" constant="106" id="xao-Fj-mpM"/>
@@ -114,7 +103,6 @@
                         </state>
                     </button>
                 </subviews>
-                <animations/>
                 <constraints>
                     <constraint firstItem="rLH-bD-6O0" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="2iB-MH-1Ed"/>
                     <constraint firstItem="5NE-Qy-Rpe" firstAttribute="top" secondItem="qC7-AM-fOG" secondAttribute="bottom" constant="-42.5" id="5AR-k6-Da7"/>
@@ -136,7 +124,6 @@
                     <constraint firstItem="qC7-AM-fOG" firstAttribute="top" secondItem="qV3-mY-Kk5" secondAttribute="bottom" constant="8" id="x94-04-b6P"/>
                 </constraints>
             </tableViewCellContentView>
-            <animations/>
             <connections>
                 <outlet property="AqiLable" destination="kFr-KW-LGn" id="cE5-8R-KqU"/>
                 <outlet property="FlLale" destination="6Wr-Kx-BVN" id="gvL-2v-YFi"/>

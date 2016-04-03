@@ -30,7 +30,6 @@
 -(void)creatButton
 {
     _lable = [[UILabel alloc]initWithFrame:CGRectMake(0, 10, WScreenWidth, 40)];
-//    _lable.backgroundColor = [UIColor redColor];
     _lable.textAlignment = NSTextAlignmentCenter;
     _lable.textColor = [UIColor lightGrayColor];
     [self.contentView addSubview:_lable];

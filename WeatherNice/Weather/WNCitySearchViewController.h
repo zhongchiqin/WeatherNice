@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface WNCitySearchViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
-
+//@property (nonatomic, strong) WNCitySearchViewController * vc;
 @end

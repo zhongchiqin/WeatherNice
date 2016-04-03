@@ -28,7 +28,11 @@ static NSString * const Identifier = @"Identifier";
 #define ImageHight 215.f
 
 @implementation WNCitySearchViewController
-
+- (void)dealloc
+{
+    NSLog(@"adasdasdada");
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -45,14 +49,14 @@ static NSString * const Identifier = @"Identifier";
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.rowHeight = 250;
-    _tableView.contentInset = UIEdgeInsetsMake(ImageHight, 0, 0, 0);
     _tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+    _tableView.contentInset = UIEdgeInsetsMake(ImageHight, 0, 0, 0);
     [self.view addSubview:_tableView];
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:Identifier];
     _zoomImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"1"]];
     _zoomImageView.frame = CGRectMake(0, -ImageHight, WScreenWidth , ImageHight);
     _zoomImageView.userInteractionEnabled = YES;
-    //contentMode = UIViewContentModeScaleAspectFill时，高度改变宽度也跟着改变
+//    contentMode = UIViewContentModeScaleAspectFill时，高度改变宽度也跟着改变
     _zoomImageView.contentMode = UIViewContentModeScaleAspectFill;//重点（不设置那将只会被纵向拉伸）
     [_tableView addSubview:_zoomImageView];
     [_tableView registerClass:[WNCitySearchTableViewCell class] forCellReuseIdentifier:Identifier];
@@ -67,11 +71,13 @@ static NSString * const Identifier = @"Identifier";
     [_zoomImageView addSubview:close];
     
     _searchTextField = [[UITextField alloc]initWithFrame:CGRectMake((WScreenWidth-250)/2, ImageHight - 40, 250, 40)];
+    _searchTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     _searchTextField.layer.borderWidth = 0.5;
     _searchTextField.layer.borderColor = [UIColor blackColor].CGColor;
     _searchTextField.layer.cornerRadius = 20;
     _searchTextField.delegate = self;
     _searchTextField.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    
     
     [_zoomImageView addSubview:_searchTextField];
     
@@ -90,6 +96,23 @@ static NSString * const Identifier = @"Identifier";
 {
     
 }
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    NSLog(@"%@",textField.text);
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    UIWindow *window = delegate.window;
+    LeftSlideViewController *leftController = (LeftSlideViewController *)window.rootViewController;
+    [leftController closeLeftView];
+    [self postNotification:textField.text];
+    [self dismissViewControllerAnimated:NO completion:nil];
+    return YES;
+}
+
+- (void)postNotification:(NSString *)cityName
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"CitySearchViewController" object:nil userInfo:@{@"cityName":cityName}];
+}
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
@@ -103,7 +126,6 @@ static NSString * const Identifier = @"Identifier";
     if (y > 30) {
         NSLog(@"vre");
     }
-    
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -121,6 +143,4 @@ static NSString * const Identifier = @"Identifier";
         cell.lable.text = @"热门景点";
     return cell;
 }
-
-
 @end

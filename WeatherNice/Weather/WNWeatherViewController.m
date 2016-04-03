@@ -43,6 +43,9 @@ static NSString * const Identifier6 = @"Identifier6";
 
 @implementation WNWeatherViewController
 
+
+
+
 //把侧滑手势打开
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -144,6 +147,7 @@ static NSString * const Identifier6 = @"Identifier6";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:leftButton];
     WNButton *rigthButon = [WNButton creatButtonWithType:UIButtonTypeCustom Title:@"" BackgoundImage:[UIImage imageNamed:@"right_button_share@2x"] State:UIControlStateNormal Action:^(UIButton *sender) {
         NSLog(@"分享");
+        
     }];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rigthButon];
  
@@ -174,16 +178,13 @@ static NSString * const Identifier6 = @"Identifier6";
                 NSLog(@"%@",_dict);
                 _city = _dict[@"basic"][@"city"];
                 if ([_dataArray containsObject:_city]) {
-                    
-                }else{
-                    
+                    [_dataArray removeObject:_city];
+                }
                     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
                     [_dataArray addObject:_city];
                     [userDefaults setObject:_dataArray forKey:@"array"];
                     [userDefaults synchronize];
-                    
                     [[NSNotificationCenter defaultCenter]postNotificationName:@"sendArray" object:nil userInfo:@{@"array":_dataArray}];
-                }
                 AppDelegate * appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
                 UIWindow * window = appdelegate.window;
                 LeftSlideViewController * lsv = (LeftSlideViewController *)window.rootViewController;

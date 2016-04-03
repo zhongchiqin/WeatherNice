@@ -37,7 +37,9 @@
 //    监听网络
     [self monitorUrl];
     
+
     [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
+    [[UITabBar appearance]setBarTintColor:[UIColor blackColor]];
     
     return YES;
     

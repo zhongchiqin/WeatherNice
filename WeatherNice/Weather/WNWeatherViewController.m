@@ -43,13 +43,25 @@ static NSString * const Identifier6 = @"Identifier6";
 
 @implementation WNWeatherViewController
 
-
+//-(UIStatusBarStyle)preferredStatusBarStyle
+//{
+//    //设置为白色
+//    return UIStatusBarStyleLightContent;
+//    //默认为黑色
+//    //    return UIStatusBarStyleDefault;
+//}
+//#pragma mark-设置状态栏是否隐藏（否）
+//-(BOOL)prefersStatusBarHidden
+//{
+//    return NO;
+//}
 
 
 //把侧滑手势打开
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+  [self setNeedsStatusBarAppearanceUpdate];
     AppDelegate *appdalegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     UIWindow * window = appdalegate.window;
     LeftSlideViewController * lsv = (LeftSlideViewController *)window.rootViewController;
@@ -72,8 +84,10 @@ static NSString * const Identifier6 = @"Identifier6";
     [self.view addSubview:imageView];
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     [self creatNavigationBarButton];
+    
     _dataArray = [[NSMutableArray alloc]init];
-
+    _dict = [[NSMutableDictionary alloc]init];
+    
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     if ([ud objectForKey:@"array"] == nil) {
         _cityStr = @"beijing";
@@ -84,6 +98,7 @@ static NSString * const Identifier6 = @"Identifier6";
         NSLog(@"+++++%@",_cityStr);
          _cityStr = [self chineseCharactersIntoPinyinWithCityname:_cityStr];
     }
+    
     [self creatDataSourceWithHttpArg:_cityStr];
     [self addNotification];
     [self creatTableView];
@@ -165,15 +180,14 @@ static NSString * const Identifier6 = @"Identifier6";
 {
     NSString *httpUrl = @"http://apis.baidu.com/heweather/weather/free";
 //    httpArg = @"city=beijing";
-    _dict = [[NSMutableDictionary alloc]init];
-    NSString *str = [NSString stringWithFormat:@"city=%@",httpArg];
+        NSString *str = [NSString stringWithFormat:@"city=%@",httpArg];
     [WNRequest request:httpUrl withHttpArg:str Complete:^(NSData *data) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         dispatch_async(dispatch_get_main_queue(), ^{
             _dict = dict[@"HeWeather data service 3.0"][0];
             
             if ([_dict[@"status"]isEqualToString:@"ok"]) {
-                
+
                 [_tableView reloadData];
                 NSLog(@"%@",_dict);
                 _city = _dict[@"basic"][@"city"];

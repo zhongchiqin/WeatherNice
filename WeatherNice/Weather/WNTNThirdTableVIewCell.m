@@ -55,6 +55,7 @@ typedef NS_ENUM(NSInteger, WNChartLineType) {
     
     return self;
 }
+
 - (void)setRemoveLine:(BOOL)removeLine
 {
     _removeLine = removeLine;

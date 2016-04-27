@@ -23,7 +23,19 @@ static NSString * const Identifier = @"Identifier";
 @end
 
 @implementation WNLeftViewController
-
+//#pragma mark-设置状态栏的样式
+//-(UIStatusBarStyle)preferredStatusBarStyle
+//{
+//    //设置为白色
+//    return UIStatusBarStyleLightContent;
+//    //默认为黑色
+////    return UIStatusBarStyleDefault;
+//}
+//#pragma mark-设置状态栏是否隐藏（否）
+//-(BOOL)prefersStatusBarHidden
+//{
+//    return NO;
+//}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -34,7 +46,9 @@ static NSString * const Identifier = @"Identifier";
 }
 - (void)viewWillAppear:(BOOL)animated
 {
+    
     [super viewWillAppear:animated];
+    [self setNeedsStatusBarAppearanceUpdate];
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     if ([ud objectForKey:@"array"]==nil) {
         [_dataArray addObject:@"北京"];

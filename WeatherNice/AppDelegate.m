@@ -15,6 +15,7 @@
 #import <AFNetworking.h>
 #import "WNAlertController.h"
 
+
 #define kThemeDidChangeNotification @"kThemeDidChangeNotification"
 
 @interface AppDelegate ()
@@ -27,6 +28,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [application setStatusBarStyle:UIStatusBarStyleLightContent];
+    
     _window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     WNBarController *nvc = [[WNBarController alloc]init];
     [_window makeKeyAndVisible];

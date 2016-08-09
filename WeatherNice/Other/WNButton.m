@@ -25,7 +25,7 @@ typedef void(^Dotype) (WNButton *sender);
         [button setBackgroundImage:image forState:state];
     }
     [button addTarget:button action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
-
+    
     button->touch = btn;
     return button;
 }

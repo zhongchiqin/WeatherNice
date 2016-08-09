@@ -9,5 +9,7 @@
 #import "WNBasic.h"
 
 @implementation WNBasic
+
 @synthesize id;
+
 @end

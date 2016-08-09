@@ -38,6 +38,7 @@ static NSString * const Identifier6 = @"Identifier6";
     NSMutableDictionary *   _dict;
     NSString *              _city;
     WNButton *              centerButton;
+    NSMutableDictionary *   _dataDict;
 }
 @end
 
@@ -67,6 +68,7 @@ static NSString * const Identifier6 = @"Identifier6";
     LeftSlideViewController * lsv = (LeftSlideViewController *)window.rootViewController;
     [lsv setPanEnabled:YES];
 }
+
 //把侧滑手势关闭
 - (void)viewDidDisappear:(BOOL)animated
 {
@@ -87,6 +89,7 @@ static NSString * const Identifier6 = @"Identifier6";
     
     _dataArray = [[NSMutableArray alloc]init];
     _dict = [[NSMutableDictionary alloc]init];
+    _dataDict = [[NSMutableDictionary alloc]init];
     
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     if ([ud objectForKey:@"array"] == nil) {
@@ -178,6 +181,8 @@ static NSString * const Identifier6 = @"Identifier6";
 
 - (void)creatDataSourceWithHttpArg:(NSString *)httpArg
 {
+    NSLog(@"%@",_dict);
+    _dataDict = _dict;
     NSString *httpUrl = @"http://apis.baidu.com/heweather/weather/free";
 //    httpArg = @"city=beijing";
         NSString *str = [NSString stringWithFormat:@"city=%@",httpArg];
@@ -189,7 +194,7 @@ static NSString * const Identifier6 = @"Identifier6";
             if ([_dict[@"status"]isEqualToString:@"ok"]) {
 
                 [_tableView reloadData];
-                NSLog(@"%@",_dict);
+//                NSLog(@"%@",_dict);
                 _city = _dict[@"basic"][@"city"];
                 if ([_dataArray containsObject:_city]) {
                     [_dataArray removeObject:_city];
@@ -207,6 +212,9 @@ static NSString * const Identifier6 = @"Identifier6";
                 }];
                 self.navigationItem.titleView = centerButton;
             }else{
+                //失败的话_dict = 上一个城市的数据
+                _dict = _dataDict;
+                [_tableView reloadData];
                 NSLog(@"失败");
                 UIAlertView *alertV = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"查无此项" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alertV show];
@@ -224,7 +232,6 @@ static NSString * const Identifier6 = @"Identifier6";
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.backgroundColor = [UIColor clearColor];
-//    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tableView];
     UINib *firstNib = [UINib nibWithNibName:@"WNFirstTableViewCell" bundle:nil];
     [_tableView registerNib:firstNib forCellReuseIdentifier:Identifier1];

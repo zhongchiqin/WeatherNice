@@ -11,7 +11,6 @@
 #import "LeftSlideViewController.h"
 #import "AppDelegate.h"
 #import "WNCitySearchTableViewCell.h"
-#import "WNSearchViewController.h"
 
 @interface WNCitySearchViewController ()<UITextFieldDelegate>
 
@@ -33,6 +32,11 @@ static NSString * const Identifier = @"Identifier";
     NSLog(@"adasdasdada");
     
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -40,8 +44,8 @@ static NSString * const Identifier = @"Identifier";
     self.view.backgroundColor = [UIColor whiteColor];
 
     [self creatTableView];
+   
 }
-
 
 - (void)creatTableView
 {
@@ -124,7 +128,7 @@ static NSString * const Identifier = @"Identifier";
         _zoomImageView.frame = frame;
     }
     if (y > 30) {
-        NSLog(@"vre");
+        _zoomImageView.frame = CGRectMake(0, 0, WScreenWidth, ImageHight);
     }
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

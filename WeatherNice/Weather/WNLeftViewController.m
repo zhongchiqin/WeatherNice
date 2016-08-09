@@ -23,7 +23,7 @@ static NSString * const Identifier = @"Identifier";
 @end
 
 @implementation WNLeftViewController
-//#pragma mark-设置状态栏的样式
+#pragma mark-设置状态栏的样式
 //-(UIStatusBarStyle)preferredStatusBarStyle
 //{
 //    //设置为白色
@@ -43,6 +43,7 @@ static NSString * const Identifier = @"Identifier";
     [self creatTableView];
     [self creatNavView];
     [self addNotification];
+
 }
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -57,6 +58,7 @@ static NSString * const Identifier = @"Identifier";
         _dataArray = [NSMutableArray arrayWithArray:arr];
     }
     [_tableView reloadData];
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 - (void)addNotification
 {

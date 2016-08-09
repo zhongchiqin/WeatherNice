@@ -33,7 +33,6 @@
 		871260231C1AEF3E00DA2A1A /* account_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 871260221C1AEF3E00DA2A1A /* account_bg@2x.png */; };
 		8739AC971C224DD300597225 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8739AC961C224DD300597225 /* 1.png */; };
 		8739AC9B1C22867000597225 /* WNCitySearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8739AC991C22867000597225 /* WNCitySearchTableViewCell.m */; };
-		87558BA51C27FDC8002744AC /* WNSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87558BA41C27FDC8002744AC /* WNSearchViewController.m */; };
 		876991F21C1E87A4004F3D51 /* WNTNThirdTableVIewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 876991F01C1E87A4004F3D51 /* WNTNThirdTableVIewCell.m */; };
 		876991F31C1E87A4004F3D51 /* WNTNThirdTableVIewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 876991F11C1E87A4004F3D51 /* WNTNThirdTableVIewCell.xib */; };
 		876991F71C1EB013004F3D51 /* WNCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 876991F51C1EB013004F3D51 /* WNCollectionViewCell.m */; };
@@ -192,8 +191,6 @@
 		8739AC961C224DD300597225 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		8739AC981C22867000597225 /* WNCitySearchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WNCitySearchTableViewCell.h; path = Weather/WNCitySearchTableViewCell.h; sourceTree = "<group>"; };
 		8739AC991C22867000597225 /* WNCitySearchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WNCitySearchTableViewCell.m; path = Weather/WNCitySearchTableViewCell.m; sourceTree = "<group>"; };
-		87558BA31C27FDC8002744AC /* WNSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WNSearchViewController.h; path = Weather/WNSearchViewController.h; sourceTree = "<group>"; };
-		87558BA41C27FDC8002744AC /* WNSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WNSearchViewController.m; path = Weather/WNSearchViewController.m; sourceTree = "<group>"; };
 		876991EF1C1E87A4004F3D51 /* WNTNThirdTableVIewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WNTNThirdTableVIewCell.h; path = Weather/WNTNThirdTableVIewCell.h; sourceTree = "<group>"; };
 		876991F01C1E87A4004F3D51 /* WNTNThirdTableVIewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WNTNThirdTableVIewCell.m; path = Weather/WNTNThirdTableVIewCell.m; sourceTree = "<group>"; };
 		876991F11C1E87A4004F3D51 /* WNTNThirdTableVIewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WNTNThirdTableVIewCell.xib; path = Weather/WNTNThirdTableVIewCell.xib; sourceTree = "<group>"; };
@@ -441,8 +438,6 @@
 				879388601C215C8B00CE2886 /* WNCitySearchViewController.m */,
 				87F9428A1C19B089004E3F5E /* YWViewController.h */,
 				87F9428B1C19B089004E3F5E /* YWViewController.m */,
-				87558BA31C27FDC8002744AC /* WNSearchViewController.h */,
-				87558BA41C27FDC8002744AC /* WNSearchViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -978,7 +973,6 @@
 				87F942711C193436004E3F5E /* WNDaily_forecast.m in Sources */,
 				878D6D8E1C1871A4000C78E2 /* WNAlertController.m in Sources */,
 				87F942621C191897004E3F5E /* WNAqi.m in Sources */,
-				87558BA51C27FDC8002744AC /* WNSearchViewController.m in Sources */,
 				2F5D55F51C0E983E00972007 /* WNBarController.m in Sources */,
 				8777260F1C204C2100E6AA02 /* WNSuggestionCollectionViewCell.m in Sources */,
 				87F942681C191B2A004E3F5E /* WNBasic.m in Sources */,

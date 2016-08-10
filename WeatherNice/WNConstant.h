@@ -16,8 +16,12 @@
 #define WScreenHeight [UIScreen mainScreen].bounds.size.height
 
 
+#define WNUserDefaults [NSUserDefaults standardUserDefaults]
+#define Reqid @"array"
+#define WNCityUD  [WNUserDefaults objectForKey:Reqid]
 
-
-
+#define CityNameNoti @"CitySearchViewController"
+#define SendStrNoti @"sendStr"
+#define sendArrayNoti @"sendArray"
 
 #endif /* WNConstant_h */

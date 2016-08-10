@@ -37,7 +37,7 @@
    //left控制器
     WNLeftViewController * leftController = [[WNLeftViewController alloc] init];
     LeftSlideViewController *left = [[LeftSlideViewController alloc] initWithLeftView:leftController andMainView:nvc];
-    _window.rootViewController = left;
+    self.window.rootViewController = left;
 //    监听网络
     [self monitorUrl];
     

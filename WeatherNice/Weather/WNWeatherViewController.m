@@ -91,11 +91,10 @@ static NSString * const Identifier6 = @"Identifier6";
     _dict = [[NSMutableDictionary alloc]init];
     _dataDict = [[NSMutableDictionary alloc]init];
     
-    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-    if ([ud objectForKey:@"array"] == nil) {
+    if ( WNCityUD == nil) {
         _cityStr = @"beijing";
     }else{
-        NSArray *arr = [ud objectForKey:@"array"];
+        NSArray *arr = WNCityUD;
         _dataArray = [NSMutableArray arrayWithArray:arr];
         _cityStr = [arr objectAtIndex:arr.count-1];
         NSLog(@"+++++%@",_cityStr);
@@ -109,8 +108,8 @@ static NSString * const Identifier6 = @"Identifier6";
 }
 - (void)addNotification
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(upDateTitle:) name:@"CitySearchViewController" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadData:) name:@"sendStr" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(upDateTitle:) name:CityNameNoti object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadData:) name:SendStrNoti object:nil];
 }
 - (void)reloadData:(NSNotification *)nc
 {
@@ -201,9 +200,9 @@ static NSString * const Identifier6 = @"Identifier6";
                 }
                     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
                     [_dataArray addObject:_city];
-                    [userDefaults setObject:_dataArray forKey:@"array"];
+                    [userDefaults setObject:_dataArray forKey:Reqid];
                     [userDefaults synchronize];
-                    [[NSNotificationCenter defaultCenter]postNotificationName:@"sendArray" object:nil userInfo:@{@"array":_dataArray}];
+                    [[NSNotificationCenter defaultCenter]postNotificationName:sendArrayNoti object:nil userInfo:@{Reqid:_dataArray}];
                 AppDelegate * appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
                 UIWindow * window = appdelegate.window;
                 LeftSlideViewController * lsv = (LeftSlideViewController *)window.rootViewController;

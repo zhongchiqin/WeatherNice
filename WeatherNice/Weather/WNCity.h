@@ -30,4 +30,5 @@
 @property (nonatomic, copy) NSString *pm25;
 @property (nonatomic, copy) NSString *qlty;
 @property (nonatomic, copy) NSString *so2;
+
 @end

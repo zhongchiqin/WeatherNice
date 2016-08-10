@@ -67,7 +67,7 @@
 
 - (void)postNotification:(NSString *)cityName
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"CitySearchViewController" object:nil userInfo:@{@"cityName":cityName}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:CityNameNoti object:nil userInfo:@{@"cityName":cityName}];
 }
 
 @end

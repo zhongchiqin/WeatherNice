@@ -14,7 +14,7 @@
 #import "AppDelegate.h"
 
 static NSString * const Identifier = @"Identifier";
-
+#define BackColor [UIColor colorWithRed:0.94f green:0.94f blue:0.95f alpha:1.00f];
 @interface WNLeftViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UITableView *     _tableView;
@@ -38,7 +38,7 @@ static NSString * const Identifier = @"Identifier";
 //}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = BackColor;
     _dataArray = [[NSMutableArray alloc]init];
     [self creatTableView];
     [self creatNavView];
@@ -50,26 +50,24 @@ static NSString * const Identifier = @"Identifier";
     
     [super viewWillAppear:animated];
     [self setNeedsStatusBarAppearanceUpdate];
-    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-    if ([ud objectForKey:@"array"]==nil) {
+    if (WNCityUD==nil) {
         [_dataArray addObject:@"北京"];
     }else{
-        NSArray *arr = [ud objectForKey:@"array"];
+        NSArray *arr = WNCityUD;
         _dataArray = [NSMutableArray arrayWithArray:arr];
     }
     [_tableView reloadData];
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 - (void)addNotification
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(upDateTitle:) name:@"sendArray" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(upDateTitle:) name:sendArrayNoti object:nil];
 }
 
 - (void)upDateTitle:(NSNotification *)nc
 {
     NSDictionary * dict = nc.userInfo;
-    if (dict[@"array"]) {
-        _dataArray = [NSMutableArray arrayWithArray:dict[@"array"]];
+    if (dict[Reqid]) {
+        _dataArray = [NSMutableArray arrayWithArray:dict[Reqid]];
         [_tableView reloadData];
     }
 }
@@ -77,7 +75,7 @@ static NSString * const Identifier = @"Identifier";
 - (void)creatNavView
 {
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WScreenWidth, 64)];
-    view.backgroundColor = [UIColor whiteColor];
+    view.backgroundColor = BackColor;
     [self.view addSubview:view];
     UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(10, 15, 40, 40)];
     [button setTitle:@"编辑" forState:UIControlStateNormal];
@@ -122,6 +120,7 @@ static NSString * const Identifier = @"Identifier";
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier];
     cell.textLabel.text = _dataArray[indexPath.row];
+    cell.backgroundColor = BackColor;
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -129,7 +128,7 @@ static NSString * const Identifier = @"Identifier";
 
     NSLog(@"%@",_dataArray[indexPath.row]);
     NSString *str = _dataArray[indexPath.row];
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"sendStr" object:nil userInfo:@{@"cityStr":str}];
+    [[NSNotificationCenter defaultCenter]postNotificationName:SendStrNoti object:nil userInfo:@{@"cityStr":str}];
     AppDelegate * appdelegate = [[UIApplication sharedApplication] delegate];
     LeftSlideViewController * leftvc = (LeftSlideViewController *)appdelegate.window.rootViewController;
     [leftvc closeLeftView];

@@ -115,7 +115,7 @@ static NSString * const Identifier = @"Identifier";
 
 - (void)postNotification:(NSString *)cityName
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"CitySearchViewController" object:nil userInfo:@{@"cityName":cityName}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:CityNameNoti object:nil userInfo:@{@"cityName":cityName}];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
